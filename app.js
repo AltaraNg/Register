@@ -105,6 +105,7 @@ var app = new Vue({
             pguaarea: '',
             guaarea: '',
         },
+        submitted: false,
         submition: false,
         emailFeedback: '',
         paybackFeedback: '',
@@ -594,114 +595,39 @@ var app = new Vue({
                 this.submition = true
                 this.saveUser();
                 console.log("Prepared for Db");
-                /*      this.clearfeilds(); */
+                this.clearfeilds();
+                app.submition = false;
             }
         },
 
         saveUser: function() {
+            app.submitted = true;
             var formData = app.toFormData(app.Newdata);
 
             axios.post("https://wafcolapi.herokuapp.com/api.php?action=create", formData)
                 .then(function(response) {
                     console.log(response);
-                    /*   app.Newdata= {
-                          fname: '',
-                          mname: '',
-                          lname: '',
-                          city: '',
-                          state: '',
-                          telno: '',
-                          dobirth: '',
-                          yearTm: '',
-                          civil_status: '',
-                          gender: '',
-                          duration: '',
-                          home: '',
-                          householdno: '',
-                          workno: '',
-                          dependno: '',
-                          childrenno: '',
-                          education: '',
-                          visittime_to: '',
-                          visittime_fro: '',
-                          pastloan: '',
-                          pastloanamt: '',
-                          payback: '',
-                          email: '',
 
-                          rincome: '',
-                          ctype: '',
-                          ctelNo: '',
-                          phonenowork: '',
-                          cstate: '',
-                          ccity: '',
-                          cname: '',
-                          cposition: '',
-                          ctime: '',
-                          mincome: '',
-                          bincome: '',
-                          checkedDofWork: [],
-                          DofWork: '',
-                          nextofkinfname: '',
-                          nextofkinlname: '',
-                          nextofkinmname: '',
-                          nextofkin: '',
-                          nokgender: '',
-                          noktelno: '',
-                          nokduraton: '',
-                          workguafname: '',
-                          workguamname: '',
-                          workgualname: '',
-                          guareladship: '',
-                          guaworkduraton: '',
-                          guagender: '',
-                          guacity: '',
-                          guastate: '',
-                          guatelno: '',
-                          pguafname: '',
-                          pguamname: '',
-                          pgualname: '',
-                          pguareladship: '',
-                          pguaworkduraton: '',
-                          pguagender: '',
-                          pguacity: '',
-                          pguastate: '',
-                          pguatelno: '',
-                          amtonfood: '',
-                          amtontransport: '',
-                          nearestBstop: '',
-                          streetname: '',
-                          houseno: '',
-                          addaddinfo: '',
-                          cnearestBstop: '',
-                          cstreetname: '',
-                          chouseno: '',
-                          caddaddinfo: '',
-                          guanearestBstop: '',
-                          guastreetname: '',
-                          guahouseno: '',
-                          guaaddaddinfo: '',
-                          pguanearestBstop: '',
-                          pguastreetname: '',
-                          pguahouseno: '',
-                          pguaaddaddinfo: '',
-                      } */
                     if (response.data.error) {
+                        app.submitted = false;
                         app.errorMessage = response.data.message;
+
                         setTimeout(function() {
                             app.errorMessage = '';
                         }, 10000);
 
 
                     } else {
-
+                        app.submitted = false;
                         app.successMessage = response.data.message;
+
                         setTimeout(function() {
                             app.successMessage = '';
                         }, 10000);
 
                     }
                 });
+
         },
 
 
@@ -766,8 +692,6 @@ var app = new Vue({
                 education: '',
                 visittime_to: '',
                 visittime_fro: '',
-                cvisittime_to: '',
-                cvisittime_fro: '',
                 pastloan: '',
                 pastloanamt: '',
                 payback: '',
@@ -780,7 +704,6 @@ var app = new Vue({
                 ccity: '',
                 cname: '',
                 cposition: '',
-                ctime: '',
                 mincome: '',
                 bincome: '',
                 checkedDofWork: [],
@@ -820,6 +743,8 @@ var app = new Vue({
                 cstreetname: '',
                 chouseno: '',
                 caddaddinfo: '',
+                cvisittime_to: '',
+                cvisittime_fro: '',
                 guanearestBstop: '',
                 guastreetname: '',
                 guahouseno: '',
@@ -828,7 +753,23 @@ var app = new Vue({
                 pguastreetname: '',
                 pguahouseno: '',
                 pguaaddaddinfo: '',
+                Empname: '',
+                Empnumber: '',
+                Regdate: '',
+                addarea: '',
+                norooms: '',
+                empstatus: '',
+                currentsal: '',
+                paymentperiod: '',
+                cnokduraton: '',
+                market: '',
+                bacct: '',
+                mgains: '',
+                carea: '',
+                pguaarea: '',
+                guaarea: '',
             }
+
         }
     }
 });
