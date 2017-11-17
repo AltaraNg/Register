@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    margin: auto;
+    margin-top: 44px;
+}
+
+.fleft {
+    float: left;
+}
+
+.fright {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+.addNew {
+    padding: 2px 9px;
+}
+
+table.list {
+    width: 100%;
+    margin-top: 33px;
+}
+
+table.list th {
+    background: #06307c;
+    color: #ffffff;
+    padding: 9px;
+}
+
+table.list td {
+    padding: 9px
+}
+
+table.list tr {
+    background: #EEEEEE;
+}
+
+button {
+    padding: 2px 9px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .4)
+}
+
+.modalContainer {
+    width: 80%;
+    background: #ffffff;
+    margin: auto;
+    margin-top: 44px;
+}
+
+.modalHeading {
+    padding: 6px;
+    background: #06307c;
+    color: #ffffff;
+}
+
+.modalContent {
+    min-height: 333px;
+    padding: 44px;
+}
+
+.close {
+    background: #D73131;
+    padding: 3px 9px;
+    border: none;
+    color: #ffffff;
+}
+
+table.form input,
+table.form td {
+    padding: 9px;
+}
+
+table.form tr {
+    float: left;
+}
