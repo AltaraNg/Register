@@ -1,7 +1,8 @@
 const ERRORS = {
     required: 'This field is required.',
     minLength: 'The length should be minimum 8 characters.',
-    invalidEmail: 'This is not a valid email address.'
+    invalidEmail: 'This is not a valid email address.',
+    invalidTel: 'This is not a valid Telephone Number.'
 }
 var app = new Vue({
     el: '#root',
@@ -108,6 +109,7 @@ var app = new Vue({
         submitted: false,
         submition: false,
         emailFeedback: '',
+        TelFeedback: '',
         paybackFeedback: '',
         worksellFeedback: '',
         DofWOptions: [
@@ -184,7 +186,6 @@ var app = new Vue({
 
 
         emptystate() { return this.Newdata.state === '' },
-        emptytelno() { return this.Newdata.telno === '' },
         emptydobirth() { return this.Newdata.dobirth === '' },
         untickgender() { return this.Newdata.gender === '' },
         untickCivil() { return this.Newdata.civil_status === '' },
@@ -205,7 +206,15 @@ var app = new Vue({
         emptynextofkinlname() { return this.Newdata.nextofkinlname === '' },
         emptynextofkin() { return this.Newdata.nextofkin === '' },
         emptynokgender() { return this.Newdata.nokgender === '' },
-        emptynoktelno() { return this.Newdata.noktelno === '' },
+
+        emptynoktelno() {
+            if (this.Newdata.noktelno == '' || !this.isCorrectTel(this.Newdata.noktelno)) {
+                this.TelFeedback = ERRORS.invalidTel
+                return true
+            }
+            return false
+        },
+
         emptynokduraton() { return this.Newdata.nokduraton === '' },
         emptyworkguafname() { return this.Newdata.workguafname === '' },
         emptyworkgualname() { return this.Newdata.workgualname === '' },
@@ -217,7 +226,14 @@ var app = new Vue({
         emptyguahouseno() { return this.Newdata.guahouseno === '' },
         emptyguagender() { return this.Newdata.guagender === '' },
         emptyguastate() { return this.Newdata.guastate === '' },
-        emptyguatelno() { return this.Newdata.guatelno === '' },
+        emptyguatelno() {
+            if (this.Newdata.guatelno == '' || !this.isCorrectTel(this.Newdata.guatelno)) {
+                this.TelFeedback = ERRORS.invalidTel
+                return true
+            }
+            return false
+
+        },
         emptypguafname() { return this.Newdata.pguafname === '' },
         emptypgualname() { return this.Newdata.pgualname === '' },
         emptypguareladship() { return this.Newdata.pguareladship === '' },
@@ -228,7 +244,13 @@ var app = new Vue({
         emptypguahouseno() { return this.Newdata.pguahouseno === '' },
         emptypguagender() { return this.Newdata.pguagender === '' },
         emptypguastate() { return this.Newdata.pguastate === '' },
-        emptypguatelno() { return this.Newdata.pguatelno === '' },
+        emptypguatelno() {
+            if (this.Newdata.pguatelno == '' || !this.isCorrectTel(this.Newdata.pguatelno)) {
+                this.TelFeedback = ERRORS.invalidTel
+                return true
+            }
+            return false
+        },
         emptypguaarea() { return this.Newdata.pguaarea === '' },
         emptyguaarea() { return this.Newdata.guaarea === '' },
 
@@ -245,6 +267,15 @@ var app = new Vue({
             }
             return false
         },
+
+        wrongTel() {
+            if (this.Newdata.telno == '' || !this.isCorrectTel(this.Newdata.telno)) {
+                this.TelFeedback = ERRORS.invalidTel
+                return true
+            }
+            return false
+        },
+
         emptypayback() {
             if (this.Newdata.payback === '' && !(this.Newdata.pastloan === '')) {
                 this.paybackFeedback = ERRORS.required;
@@ -334,13 +365,11 @@ var app = new Vue({
 
 
         emptyctelNo() {
-            if (this.Newdata.ctelNo === '' && (this.Newdata.empstatus === 'Salaried' || this.Newdata.empstatus === 'Non-Salaried')) {
-                this.worksellFeedback = ERRORS.required;
+            if ((this.Newdata.ctelNo == '' || !this.isCorrectTel(this.Newdata.ctelNo)) && (this.Newdata.empstatus === 'Salaried' || this.Newdata.empstatus === 'Non-Salaried')) {
+                this.TelFeedback = ERRORS.invalidTel
                 return true
             }
             return false
-
-
         },
         emptyphonenowork() {
 
@@ -507,6 +536,11 @@ var app = new Vue({
             const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(email)
         },
+
+        isCorrectTel(telno) {
+            return telno.length == 11
+        },
+
         validateForm(event) {
 
             var i = 0;
@@ -530,7 +564,7 @@ var app = new Vue({
                 this.emptyhouseno ||
                 this.emptycity ||
                 this.emptystate ||
-                this.emptytelno ||
+                this.wrongTel ||
                 this.untickgender ||
                 this.untickCivil ||
                 this.untickhome ||

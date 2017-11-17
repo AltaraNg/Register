@@ -79,10 +79,10 @@
                                         <span class="help-block" v-if="submition && untickgender">This field is required</span>
                                     </div>
                                 </div>
-                                <div class="col-sm-8 form-group" v-bind:class="{ 'has-error': submition && emptytelno }">
+                                <div class="col-sm-8 form-group" v-bind:class="{ 'has-error': submition && wrongTel }">
                                     <label>Telephone Number</label>
                                     <input type="tel" placeholder="Enter Phone  Number Here.." v-model="Newdata.telno" class="form-control">
-                                    <span class="help-block" v-if="submition && emptytelno">This field is required</span>
+                                    <span class="help-block" v-if="submition && wrongTel">{{TelFeedback}}</span>
                                 </div>
 
                             </div>
@@ -223,7 +223,7 @@
 
                             <div class="row">
                                 <div class="col-sm-2 form-group">
-                                    <label>How of Children</label>
+                                    <label>Number of Children</label>
                                     <div v-bind:class="{ 'has-error': submition && emptychildrenno }">
                                         <input type="number" min="0" v-model="Newdata.childrenno" placeholder="Enter Number Here.." class="form-control">
                                         <span class="help-block" v-if="submition && emptychildrenno">This field is required</span>
@@ -360,9 +360,9 @@
                                 <div class="form-group col-sm-4" v-if="Newdata.empstatus == 'Non-Salaried'">
                                     <label class="control-label" for="bacct">Do you have a bank account?</label>
                                     <div class="" v-bind:class="{ 'has-error': submition && emptybacct}">
-                                        <label class="radio-inline"><input type="radio" name="bacct"   v-model="Newdata.bacct" value="Bank Deposit">Bank Deposit</label>
-                                        <label class="radio-inline"><input type="radio" name="bacct"  v-model="Newdata.bacct" value="Check">Check</label>
-                                        <label class="radio-inline"><input type="radio" name="bacct"  v-model="Newdata.bacct" value="Cash">Cash</label>
+
+                                        <label class="radio-inline"><input type="radio" name="bacct"  v-model="Newdata.bacct" value="Yes">Yes</label>
+                                        <label class="radio-inline"><input type="radio" name="bacct"  v-model="Newdata.bacct" value="No">No</label>
                                         <span class="help-block" v-if="submition && emptybacct">This field is required</span>
                                     </div>
                                 </div>
@@ -492,7 +492,7 @@
                                     <label>Telephone Number</label>
                                     <div class="" v-bind:class="{ 'has-error': submition && emptyctelNo}">
                                         <input type="tel" placeholder="Enter Phone  Number Here.." v-model="Newdata.ctelNo" class="form-control">
-                                        <span class="help-block" v-if="submition && emptyctelNo">This field is required</span>
+                                        <span class="help-block" v-if="submition && emptyctelNo">{{TelFeedback}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -574,7 +574,7 @@
                                     <label>Telephone Number</label>
                                     <div class="" v-bind:class="{ 'has-error': submition && emptynoktelno}">
                                         <input type="tel" v-model="Newdata.noktelno" placeholder="Enter Phone  Number Here.." class="form-control">
-                                        <span class="help-block" v-if="submition && emptynoktelno">This field is required</span>
+                                        <span class="help-block" v-if="submition && emptynoktelno">{{TelFeedback}}</span>
                                     </div>
                                 </div>
 
@@ -633,8 +633,66 @@
 
                                     </div>
                                 </div>
+                                <div class="form-group col-sm-3">
+                                    <label class="control-label" for="guagender">Gender</label>
+                                    <div class="" v-bind:class="{ 'has-error': submition && emptyguagender}">
+                                        <label class="radio-inline"><input type="radio" v-model="Newdata.guagender" name="nokgender" value="Male" >Male</label>
+                                        <label class="radio-inline"><input type="radio" v-model="Newdata.guagender" name="nokgender" value="Female">Female</label>
+                                        <span class="help-block" v-if="submition && emptyguagender">This field is required</span>
+                                    </div>
+                                </div>
 
-                                <div class="col-sm-3 form-group" v-bind:class="{ 'has-error': submition && emptyguacity }">
+                                <div class="col-sm-3 form-group">
+                                    <label>Telephone Number</label>
+                                    <div class="" v-bind:class="{ 'has-error': submition && emptyguatelno}">
+                                        <input type="tel" v-model="Newdata.guatelno" placeholder="Enter Phone  Number Here.." class="form-control">
+                                        <span class="help-block" v-if="submition && emptyguatelno">{{TelFeedback}}</span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <hr>
+                            <h5><strong>Work Address</strong></h5>
+                            <div class="row">
+
+
+                                <div class="form-group col-sm-3" v-bind:class="{ 'has-error': submition && emptyguastreetname }">
+                                    <label>Street name</label>
+                                    <input type="text" placeholder="Enter your date of birth Here.." v-model="Newdata.guastreetname" class="form-control">
+                                    <span class="help-block" v-if="submition && emptyguastreetname">This field is required</span>
+                                </div>
+
+                                <div class="form-group col-sm-2" v-bind:class="{ 'has-error': submition && emptyguahouseno }">
+                                    <label>House number</label>
+                                    <input type="text" placeholder="Enter your date of birth Here.." v-model="Newdata.guahouseno" class="form-control">
+                                    <span class="help-block" v-if="submition && emptyguahouseno">This field is required</span>
+                                </div>
+
+                                <div class="form-group col-sm-3" v-bind:class="{ 'has-error': submition && emptyguanearestBstop }">
+                                    <label>Nearest Bus Stop</label>
+                                    <input type="text" placeholder="Enter your date of birth Here.." v-model="Newdata.guanearestBstop" class="form-control">
+                                    <span class="help-block" v-if="submition && emptyguanearestBstop">This field is required</span>
+                                </div>
+
+                                <div class="form-group col-sm-3" v-bind:class="{ 'has-error': submition && emptyguaarea }">
+                                    <label>Area</label>
+                                    <input type="text" placeholder="Enter your Area Here.." v-model="Newdata.guaarea" class="form-control">
+                                    <span class="help-block" v-if="submition && emptyguaarea">This field is required</span>
+                                </div>
+
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+
+                                <div class="form-group col-sm-4">
+                                    <label>Description</label>
+                                    <textarea placeholder="Enter Address Here.." rows="3" v-model="Newdata.guaaddaddinfo" class="form-control"></textarea>
+
+                                </div>
+                                <div class="col-sm-2 form-group" v-bind:class="{ 'has-error': submition && emptyguacity }">
                                     <label>City</label>
                                     <input type="text" placeholder="Enter City Name Here.." v-model="Newdata.guacity" class="form-control">
                                     <span class="help-block" v-if="submition && emptyguacity">This field is required</span>
@@ -654,290 +712,184 @@
                                     </div>
 
                                 </div>
-                                <hr>
-                                <h5><strong>Address</strong></h5>
-                                <div class="row">
-
-
-                                    <div class="form-group col-sm-3" v-bind:class="{ 'has-error': submition && emptyguastreetname }">
-                                        <label>Street name</label>
-                                        <input type="text" placeholder="Enter your date of birth Here.." v-model="Newdata.guastreetname" class="form-control">
-                                        <span class="help-block" v-if="submition && emptyguastreetname">This field is required</span>
-                                    </div>
-
-                                    <div class="form-group col-sm-2" v-bind:class="{ 'has-error': submition && emptyguahouseno }">
-                                        <label>House number</label>
-                                        <input type="text" placeholder="Enter your date of birth Here.." v-model="Newdata.guahouseno" class="form-control">
-                                        <span class="help-block" v-if="submition && emptyguahouseno">This field is required</span>
-                                    </div>
-
-                                    <div class="form-group col-sm-3" v-bind:class="{ 'has-error': submition && emptyguanearestBstop }">
-                                        <label>Nearest Bus Stop</label>
-                                        <input type="text" placeholder="Enter your date of birth Here.." v-model="Newdata.guanearestBstop" class="form-control">
-                                        <span class="help-block" v-if="submition && emptyguanearestBstop">This field is required</span>
-                                    </div>
-
-                                    <div class="form-group col-sm-3" v-bind:class="{ 'has-error': submition && emptyguaarea }">
-                                        <label>Area</label>
-                                        <input type="text" placeholder="Enter your Area Here.." v-model="Newdata.guaarea" class="form-control">
-                                        <span class="help-block" v-if="submition && emptyguaarea">This field is required</span>
-                                    </div>
-
-                                </div>
-
-                                <hr>
-
-                                <div class="row">
-
-                                    <div class="form-group col-sm-4">
-                                        <label>Description</label>
-                                        <textarea placeholder="Enter Address Here.." rows="3" v-model="Newdata.guaaddaddinfo" class="form-control"></textarea>
-
-                                    </div>
-                                    <div class="form-group col-sm-2">
-                                        <label class="control-label" for="guagender">Gender</label>
-                                        <div class="" v-bind:class="{ 'has-error': submition && emptyguagender}">
-                                            <label class="radio-inline"><input type="radio" v-model="Newdata.guagender" name="nokgender" value="Male" >Male</label>
-                                            <label class="radio-inline"><input type="radio" v-model="Newdata.guagender" name="nokgender" value="Female">Female</label>
-                                            <span class="help-block" v-if="submition && emptyguagender">This field is required</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-3 form-group">
-                                        <label>Telephone Number</label>
-                                        <div class="" v-bind:class="{ 'has-error': submition && emptyguatelno}">
-                                            <input type="tel" v-model="Newdata.guatelno" placeholder="Enter Phone  Number Here.." class="form-control">
-                                            <span class="help-block" v-if="submition && emptyguatelno">This field is required</span>
-                                        </div>
-                                    </div>
 
 
 
-                                    <div class="form-group col-sm-3">
-                                        <div class="" v-bind:class="{ 'has-error': submition && emptyguaworkduraton}">
-                                            <label for="dura" class=" control-label">Duration in current work</label>
-                                            <select id="dura" class="form-control" v-model="Newdata.guaworkduraton">
+                                <div class="form-group col-sm-3">
+                                    <div class="" v-bind:class="{ 'has-error': submition && emptyguaworkduraton}">
+                                        <label for="dura" class=" control-label">Duration in current work</label>
+                                        <select id="dura" class="form-control" v-model="Newdata.guaworkduraton">
                                                         <option value="">Select</option>
                                                         <option v-for="(dura, $index) in ['less than 1 year','1 year','2 years','3 years', 'between 4 - 9 years', 'more than 10 years', 'more than 20 years']"
                                                         :value="['less than 1 year','1 year','2 years','3 years', 'between 4 - 9 years' , 'more than 10 years', 'more than 20 years'][$index]">{{ dura }}
                                                 </option>
                                                     </select>
-                                            <span class="help-block" v-if="submition && emptyguaworkduraton">This field is required</span>
-                                        </div>
+                                        <span class="help-block" v-if="submition && emptyguaworkduraton">This field is required</span>
                                     </div>
-
                                 </div>
 
-                                <hr>
+                            </div>
 
-                                <h4><strong>Personal Guarantor</strong></h4>
-                                <hr>
+                            <hr>
 
-                                <div class="row">
-                                    <div class="col-sm-4 form-group" v-bind:class="{ 'has-error': submition && emptypguafname }">
-                                        <label for="pguafname">First Name</label>
-                                        <input name="pguafname" class="form-control" type="text" placeholder="Enter First Name Here.." v-model="Newdata.pguafname" class="form-control">
-                                        <span class="help-block" v-if="submition && emptypguafname">This field is required</span>
-                                    </div>
-                                    <div class="col-sm-4 form-group">
-                                        <label>Middle Name</label>
-                                        <input type="text" class="form-control" placeholder="Enter Middle Name Here.." v-model="Newdata.pguamname" class="form-control">
+                            <h4><strong>Personal Guarantor</strong></h4>
+                            <hr>
 
-                                    </div>
-                                    <div class="col-sm-4 form-group" v-bind:class="{ 'has-error': submition && emptypgualname }">
-                                        <label>Last Name</label>
-                                        <input type="text" class="form-control" placeholder="Enter Last Name Here.." v-model="Newdata.pgualname" class="form-control">
-                                        <span class="help-block" v-if="submition && emptypgualname">This field is required</span>
-                                    </div>
+                            <div class="row">
+                                <div class="col-sm-4 form-group" v-bind:class="{ 'has-error': submition && emptypguafname }">
+                                    <label for="pguafname">First Name</label>
+                                    <input name="pguafname" class="form-control" type="text" placeholder="Enter First Name Here.." v-model="Newdata.pguafname" class="form-control">
+                                    <span class="help-block" v-if="submition && emptypguafname">This field is required</span>
+                                </div>
+                                <div class="col-sm-4 form-group">
+                                    <label>Middle Name</label>
+                                    <input type="text" class="form-control" placeholder="Enter Middle Name Here.." v-model="Newdata.pguamname" class="form-control">
 
                                 </div>
+                                <div class="col-sm-4 form-group" v-bind:class="{ 'has-error': submition && emptypgualname }">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control" placeholder="Enter Last Name Here.." v-model="Newdata.pgualname" class="form-control">
+                                    <span class="help-block" v-if="submition && emptypgualname">This field is required</span>
+                                </div>
 
-                                <hr>
-                                <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <label class="control-label">Relationship</label>
-                                        <div class="" v-bind:class="{ 'has-error': submition && emptypguareladship}">
+                            </div>
 
-                                            <label class="radio-inline"><input type="radio"  v-model="Newdata.pguareladship" name="pguarantor" value="Friend">Friend</label>
-                                            <label class="radio-inline"><input type="radio"  v-model="Newdata.pguareladship" name="pguarantor" value="Family">Family</label>
-                                            <label class="radio-inline"><input type="radio"  v-model="Newdata.pguareladship" name="pguarantor" value="Co-worker" >Co-worker</label>
-                                            <label class="radio-inline"><input type="radio"  v-model="Newdata.pguareladship" name="pguarantor" value="Employee">Employee</label>
-                                            <label class="radio-inline"><input type="radio"  v-model="Newdata.pguareladship" name="pguarantor" value="Employee">Other :  <input type="text" placeholder="Enter Last Name Here.." class="form-control"></label>
-                                            <span class="help-block" v-if="submition && emptypguareladship">This field is required</span>
+                            <hr>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label class="control-label">Relationship</label>
+                                    <div class="" v-bind:class="{ 'has-error': submition && emptypguareladship}">
 
-                                        </div>
+                                        <label class="radio-inline"><input type="radio"  v-model="Newdata.pguareladship" name="pguarantor" value="Friend">Friend</label>
+                                        <label class="radio-inline"><input type="radio"  v-model="Newdata.pguareladship" name="pguarantor" value="Family">Family</label>
+                                        <label class="radio-inline"><input type="radio"  v-model="Newdata.pguareladship" name="pguarantor" value="Co-worker" >Co-worker</label>
+                                        <label class="radio-inline"><input type="radio"  v-model="Newdata.pguareladship" name="pguarantor" value="Employee">Employee</label>
+                                        <label class="radio-inline"><input type="radio"  v-model="Newdata.pguareladship" name="pguarantor" value="Employee">Other :  <input type="text" placeholder="Enter Last Name Here.." class="form-control"></label>
+                                        <span class="help-block" v-if="submition && emptypguareladship">This field is required</span>
+
                                     </div>
+                                </div>
 
-                                    <div class="col-sm-3 form-group" v-bind:class="{ 'has-error': submition && emptypguacity }">
-                                        <label>City</label>
-                                        <input type="text" placeholder="Enter City Name Here.." v-model="Newdata.pguacity" class="form-control">
-                                        <span class="help-block" v-if="submition && emptypguacity">This field is required</span>
+                                <div class="form-group col-sm-3">
+                                    <label class="control-label" for="pguagender">Gender</label>
+                                    <div class="" v-bind:class="{ 'has-error': submition && emptypguagender}">
+                                        <label class="radio-inline"><input type="radio" v-model="Newdata.pguagender" name="pgender" value="Male" >Male</label>
+                                        <label class="radio-inline"><input type="radio" v-model="Newdata.pguagender" name="pgender" value="Female">Female</label>
+                                        <span class="help-block" v-if="submition && emptypguagender">This field is required</span>
                                     </div>
+                                </div>
+
+                                <div class="col-sm-3 form-group">
+                                    <label>Telephone Number</label>
+                                    <div class="" v-bind:class="{ 'has-error': submition && emptypguatelno}">
+                                        <input type="tel" v-model="Newdata.pguatelno" placeholder="Enter Phone  Number Here.." class="form-control">
+                                        <span class="help-block" v-if="submition && emptypguatelno">{{TelFeedback}}</span>
+                                    </div>
+                                </div>
 
 
-                                    <div class="form-group col-sm-3">
-                                        <div class="form-group" v-bind:class="{ 'has-error': submition && emptypguastate }">
-                                            <label for="days" class=" control-label">State</label>
-                                            <select id="days" class="form-control" v-model="Newdata.pguastate">
+                            </div>
+
+                            <hr>
+                            <h5><strong>Work Address</strong></h5>
+                            <div class="row">
+
+
+                                <div class="form-group col-sm-3" v-bind:class="{ 'has-error': submition && emptypguastreetname }">
+                                    <label>Street name</label>
+                                    <input type="text" placeholder="Enter your date of birth Here.." v-model="Newdata.pguastreetname" class="form-control">
+                                    <span class="help-block" v-if="submition && emptypguastreetname">This field is required</span>
+                                </div>
+
+                                <div class="form-group col-sm-3" v-bind:class="{ 'has-error': submition && emptypguahouseno }">
+                                    <label>House number</label>
+                                    <input type="text" placeholder="Enter your date of birth Here.." v-model="Newdata.pguahouseno" class="form-control">
+                                    <span class="help-block" v-if="submition && emptypguahouseno">This field is required</span>
+                                </div>
+
+                                <div class="form-group col-sm-3" v-bind:class="{ 'has-error': submition && emptypguanearestBstop }">
+                                    <label>Nearest Bus Stop</label>
+                                    <input type="text" placeholder="Enter your date of birth Here.." v-model="Newdata.pguanearestBstop" class="form-control">
+                                    <span class="help-block" v-if="submition && emptypguanearestBstop">This field is required</span>
+                                </div>
+
+                                <div class="form-group col-sm-3" v-bind:class="{ 'has-error': submition && emptypguaarea }">
+                                    <label>Area</label>
+                                    <input type="text" placeholder="Enter your Area Here.." v-model="Newdata.pguaarea" class="form-control">
+                                    <span class="help-block" v-if="submition && emptypguaarea">This field is required</span>
+                                </div>
+
+                            </div>
+
+
+                            <hr>
+
+                            <div class="row">
+
+                                <div class="form-group col-sm-4">
+                                    <label>Description</label>
+                                    <textarea placeholder="Enter Address Here.." rows="3" v-model="Newdata.pguaaddaddinfo" class="form-control"></textarea>
+                                </div>
+                                <div class="col-sm-3 form-group" v-bind:class="{ 'has-error': submition && emptypguacity }">
+                                    <label>City</label>
+                                    <input type="text" placeholder="Enter City Name Here.." v-model="Newdata.pguacity" class="form-control">
+                                    <span class="help-block" v-if="submition && emptypguacity">This field is required</span>
+                                </div>
+
+
+                                <div class="form-group col-sm-2">
+                                    <div class="form-group" v-bind:class="{ 'has-error': submition && emptypguastate }">
+                                        <label for="days" class=" control-label">State</label>
+                                        <select id="days" class="form-control" v-model="Newdata.pguastate">
                                                         <option value="">Select</option>
                                                         <option v-for="(State, $index) in StateOptions"
                                                         :value="StateOptions[$index]">{{ State }}
                                                 </option>
                                                     </select>
-                                            <span class="help-block" v-if="submition && emptypguastate">This field is required</span> </div>
-                                    </div>
-
-
+                                        <span class="help-block" v-if="submition && emptypguastate">This field is required</span> </div>
                                 </div>
 
-                                <hr>
-                                <h5><strong>Address</strong></h5>
-                                <div class="row">
-
-
-                                    <div class="form-group col-sm-3" v-bind:class="{ 'has-error': submition && emptypguastreetname }">
-                                        <label>Street name</label>
-                                        <input type="text" placeholder="Enter your date of birth Here.." v-model="Newdata.pguastreetname" class="form-control">
-                                        <span class="help-block" v-if="submition && emptypguastreetname">This field is required</span>
-                                    </div>
-
-                                    <div class="form-group col-sm-3" v-bind:class="{ 'has-error': submition && emptypguahouseno }">
-                                        <label>House number</label>
-                                        <input type="text" placeholder="Enter your date of birth Here.." v-model="Newdata.pguahouseno" class="form-control">
-                                        <span class="help-block" v-if="submition && emptypguahouseno">This field is required</span>
-                                    </div>
-
-                                    <div class="form-group col-sm-3" v-bind:class="{ 'has-error': submition && emptypguanearestBstop }">
-                                        <label>Nearest Bus Stop</label>
-                                        <input type="text" placeholder="Enter your date of birth Here.." v-model="Newdata.pguanearestBstop" class="form-control">
-                                        <span class="help-block" v-if="submition && emptypguanearestBstop">This field is required</span>
-                                    </div>
-
-                                    <div class="form-group col-sm-3" v-bind:class="{ 'has-error': submition && emptypguaarea }">
-                                        <label>Area</label>
-                                        <input type="text" placeholder="Enter your Area Here.." v-model="Newdata.pguaarea" class="form-control">
-                                        <span class="help-block" v-if="submition && emptypguaarea">This field is required</span>
-                                    </div>
-
-                                </div>
-
-
-                                <hr>
-
-                                <div class="row">
-
-                                    <div class="form-group col-sm-4">
-                                        <label>Description</label>
-                                        <textarea placeholder="Enter Address Here.." rows="3" v-model="Newdata.pguaaddaddinfo" class="form-control"></textarea>
-                                    </div>
-
-                                    <div class="form-group col-sm-2">
-                                        <label class="control-label" for="pguagender">Gender</label>
-                                        <div class="" v-bind:class="{ 'has-error': submition && emptypguagender}">
-                                            <label class="radio-inline"><input type="radio" v-model="Newdata.pguagender" name="pgender" value="Male" >Male</label>
-                                            <label class="radio-inline"><input type="radio" v-model="Newdata.pguagender" name="pgender" value="Female">Female</label>
-                                            <span class="help-block" v-if="submition && emptypguagender">This field is required</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-3 form-group">
-                                        <label>Telephone Number</label>
-                                        <div class="" v-bind:class="{ 'has-error': submition && emptypguatelno}">
-                                            <input type="tel" v-model="Newdata.pguatelno" placeholder="Enter Phone  Number Here.." class="form-control">
-                                            <span class="help-block" v-if="submition && emptypguatelno">This field is required</span>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div class="form-group col-sm-3">
-                                        <div class="" v-bind:class="{ 'has-error': submition && emptypguaworkduraton}">
-                                            <label for="dura" class=" control-label">Duration in current work</label>
-                                            <select id="dura" class="form-control" v-model="Newdata.pguaworkduraton">
+                                <div class="form-group col-sm-3">
+                                    <div class="" v-bind:class="{ 'has-error': submition && emptypguaworkduraton}">
+                                        <label for="dura" class=" control-label">Duration in current work</label>
+                                        <select id="dura" class="form-control" v-model="Newdata.pguaworkduraton">
                                                         <option value="">Select</option>
                                                         <option v-for="(dura, $index) in ['less than 1 year','1 year','2 years','3 years', 'between 4 - 9 years', 'more than 10 years', 'more than 20 years']"
                                                         :value="['less than 1 year','1 year','2 years','3 years', 'between 4 - 9 years' , 'more than 10 years', 'more than 20 years'][$index]">{{ dura }}
                                                 </option>
                                                     </select>
-                                            <span class="help-block" v-if="submition && emptypguaworkduraton">This field is required</span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <hr>
-
-                                <h4><strong>Other Questions</strong></h4>
-                                <hr>
-
-                                <div class="row">
-                                    <div class="col-sm-6 form-group" v-bind:class="{ 'has-error': submition && emptyamtonfood}">
-                                        <label>How much do you spend of food per week?</label>
-                                        <input type="number" placeholder="Enter Amount Here.." v-model="Newdata.amtonfood" class="form-control">
-                                        <span class="help-block" v-if="submition && emptyamtonfood">This field is required</span>
-                                    </div>
-                                    <div class="col-sm-6 form-group" v-bind:class="{ 'has-error': submition && emptyamtontransport}">
-                                        <label>How much do you spend on transport per day?</label>
-                                        <input type="number" placeholder="Enter Amount Here.." v-model="Newdata.amtontransport" class="form-control">
-                                        <span class="help-block" v-if="submition && emptyamtontransport">This field is required</span>
+                                        <span class="help-block" v-if="submition && emptypguaworkduraton">This field is required</span>
                                     </div>
                                 </div>
-                                <!--
-                                <hr>
-                                <div class="row">
-                                    <div class="form-group col-sm-12">
-                                        <label class="control-label" for="pguarantor">Relationship</label>
-                                        <div class="">
-                                            <label class="radio-inline"><input type="radio" name="pguarantor" value="Friend">Friend</label>
-                                            <label class="radio-inline"><input type="radio" name="pguarantor" value="Family">Family</label>
-                                            <label class="radio-inline"><input type="radio" name="pguarantor" value="Co-worker" >Co-worker</label>
-                                            <label class="radio-inline"><input type="radio" name="pguarantor" value="Employee">Employee</label>
-                                            <label class="radio-inline"><input type="radio" name="pguarantor" value="Employee">Other :  <input type="text" placeholder="Enter Last Name Here.." class="form-control"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 form-group">
-                                        <label>City</label>
-                                        <input type="text" placeholder="Enter City Name Here.." class="form-control">
-                                    </div>
-                                    <div class="col-sm-6 form-group">
-                                        <label>State</label>
-                                        <input type="text" placeholder="Enter State Name Here.." class="form-control">
-                                    </div>
 
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <textarea placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
-                                </div>
-                                <hr>
-
-                                <hr>
-                                <div class="row">
-                                    <div class="form-group col-sm-4">
-                                        <label class="control-label" for="gender">Gender</label>
-                                        <div class="">
-                                            <label class="radio-inline"><input type="radio" name="gender" value="Male" >Male</label>
-                                            <label class="radio-inline"><input type="radio" name="gender" value="Female">Female</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-4 form-group">
-                                        <label>Telephone Number</label>
-                                        <input type="number" min="0" placeholder="Enter Phone  Number Here.." class="form-control">
-                                    </div>
-
-                                    -->
                             </div>
-                            <button class="btn btn-primary">Submit</button>
-                        </div>
+                            <hr>
 
-                    </form>
+                            <h4><strong>Other Questions</strong></h4>
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-6 form-group" v-bind:class="{ 'has-error': submition && emptyamtonfood}">
+                                    <label>How much do you spend of food per week?</label>
+                                    <input type="number" placeholder="Enter Amount Here.." v-model="Newdata.amtonfood" class="form-control">
+                                    <span class="help-block" v-if="submition && emptyamtonfood">This field is required</span>
+                                </div>
+                                <div class="col-sm-6 form-group" v-bind:class="{ 'has-error': submition && emptyamtontransport}">
+                                    <label>How much do you spend on transport per day?</label>
+                                    <input type="number" placeholder="Enter Amount Here.." v-model="Newdata.amtontransport" class="form-control">
+                                    <span class="help-block" v-if="submition && emptyamtontransport">This field is required</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <button class="btn btn-primary">Submit</button>
                 </div>
 
+                </form>
             </div>
+
         </div>
+    </div>
     </div>
     <script type="text/javascript" src="axios.js">
     </script>
