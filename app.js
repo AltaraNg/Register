@@ -7,6 +7,10 @@ const ERRORS = {
 var app = new Vue({
     el: '#root',
     data: {
+        errorMessageChk: '',
+        successMessageChk: '',
+        CheckCusId: "",
+        register: false,
         Personal_Guarantor: '',
         Work_Guarantor: '',
         errorMessage: "",
@@ -108,6 +112,43 @@ var app = new Vue({
             pguaarea: '',
             guaarea: '',
         },
+        showGuaForm: false,
+
+        SelectedGuaData: {
+            custId: '',
+            workguafname: '',
+            workguamname: '',
+            workgualname: '',
+            guareladship: '',
+            guaworkduraton: '',
+            guagender: '',
+            guacity: '',
+            guastate: '',
+            guatelno: '',
+            pguafname: '',
+            pguamname: '',
+            pgualname: '',
+            pguareladship: '',
+            pguaworkduraton: '',
+            pguagender: '',
+            pguacity: '',
+            pguastate: '',
+            pguatelno: '',
+            guanearestBstop: '',
+            guastreetname: '',
+            guahouseno: '',
+            guaaddaddinfo: '',
+            pguanearestBstop: '',
+            pguastreetname: '',
+            pguahouseno: '',
+            pguaaddaddinfo: '',
+            pguaarea: '',
+            guaarea: '',
+        },
+
+        // CheckGuaData: [],
+        // SelectedGuaData:{},
+
         submitted: false,
         submition: false,
         emailFeedback: '',
@@ -219,6 +260,7 @@ var app = new Vue({
         },
 
         emptynokduraton() { return this.Newdata.nokduraton === '' },
+
 
         emptyworkguafname() {
             if (this.Work_Guarantor == true && (this.Newdata.workguafname === '')) {
@@ -405,6 +447,193 @@ var app = new Vue({
             }
             return false
         },
+
+        Gemptyworkguafname() {
+            if (this.Work_Guarantor == true && (this.SelectedGuaData.workguafname === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptyworkgualname() {
+
+            if (this.Work_Guarantor == true && (this.SelectedGuaData.workgualname === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptyguareladship() {
+
+            if (this.Work_Guarantor == true && (this.SelectedGuaData.guareladship === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptyguaworkduraton() {
+
+            if (this.Work_Guarantor == true && (this.SelectedGuaData.guaworkduraton === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptyguacity() {
+
+            if (this.Work_Guarantor == true && (this.SelectedGuaData.guacity === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        GemptyguanearestBstop() {
+
+            if (this.Work_Guarantor == true && (this.SelectedGuaData.guanearestBstop === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptyguastreetname() {
+
+            if (this.Work_Guarantor == true && (this.SelectedGuaData.guastreetname === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptyguahouseno() {
+
+            if (this.Work_Guarantor == true && (this.SelectedGuaData.guahouseno === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptyguagender() {
+
+            if (this.Work_Guarantor == true && (this.SelectedGuaData.guagender === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptyguastate() {
+
+            if (this.Work_Guarantor == true && (this.SelectedGuaData.guastate === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptyguatelno() {
+            if (this.Work_Guarantor == true && (this.SelectedGuaData.guatelno == '' || !this.isCorrectTel(this.SelectedGuaData.guatelno))) {
+                this.TelFeedback = ERRORS.invalidTel
+                return true
+            }
+            return false
+
+        },
+        Gemptypguafname() {
+            if (this.Personal_Guarantor == true && (this.SelectedGuaData.pguafname === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptypgualname() {
+            if (this.Personal_Guarantor == true && (this.SelectedGuaData.pgualname === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptypguareladship() {
+            if (this.Personal_Guarantor == true && (this.SelectedGuaData.pguareladship === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptypguaworkduraton() {
+            if (this.Personal_Guarantor == true && (this.SelectedGuaData.pguaworkduraton === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptypguacity() {
+            if (this.Personal_Guarantor == true && (this.SelectedGuaData.pguacity === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        GemptypguanearestBstop() {
+            if (this.Personal_Guarantor == true && (this.SelectedGuaData.pguanearestBstop === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptypguastreetname() {
+
+            if (this.Personal_Guarantor == true && (this.SelectedGuaData.pguastreetname === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptypguahouseno() {
+
+            if (this.Personal_Guarantor == true && (this.SelectedGuaData.pguahouseno === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptypguagender() {
+
+            if (this.Personal_Guarantor == true && (this.SelectedGuaData.pguagender === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptypguastate() {
+
+            if (this.Personal_Guarantor == true && (this.SelectedGuaData.pguastate === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        Gemptypguatelno() {
+            if (this.Personal_Guarantor == true && (this.SelectedGuaData.pguatelno == '' || !this.isCorrectTel(this.SelectedGuaData.pguatelno))) {
+                this.TelFeedback = ERRORS.invalidTel
+                return true
+            }
+            return false
+        },
+        Gemptypguaarea() {
+
+            if (this.Personal_Guarantor == true && (this.SelectedGuaData.pguaarea === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+
+        Gemptyguaarea() {
+
+            if (this.Work_Guarantor == true && (this.SelectedGuaData.guaarea === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+
 
         untickpastloan() { return this.Newdata.pastloan === '' },
         untickpayback() { return this.Newdata.payback === '' },
@@ -682,6 +911,54 @@ var app = new Vue({
     },
 
     methods: {
+
+        checkCust: function() {
+            if (app.CheckCusId == '') {
+                app.errorMessageChk = "Field can't be empty";
+                setTimeout(function() {
+                    app.errorMessageChk = '';
+                }, 1000);
+
+            } else {
+
+                axios.post("https://wafcolapi.herokuapp.com/api.php?action=checkId", {
+                        Customer_id: app.CheckCusId
+                    })
+                    .then(function(response) {
+                        console.log(response);
+                        if (response.data.error) {
+                            app.errorMessageChk = response.data.message;
+
+                            setTimeout(function() {
+                                app.errorMessageChk = '';
+                            }, 1000);
+
+                        } else {
+                            app.checKiD = response.data.checklist;
+                            if (app.checKiD.length != 0) {
+                                app.showGuaForm = true;
+                                app.SelectedGuaData = app.checKiD;
+                                console.log(app.SelectedGuaData);
+
+                                app.CustName = response.data.checklist[0].first_name + " " + response.data.checklist[0].last_name
+                                    // app.phoneNo = response.data.checklist[0].telephone
+                            } else {
+                                app.errorMessageChk = "Customer ID doesnt exist!";
+
+                                setTimeout(function() {
+                                    app.errorMessageChk = '';
+                                }, 1000);
+                            }
+                            // app.ApproveCustomer(app.CustName, app.phoneNo);
+                            // app.Customer_id = "";
+
+                        }
+                    });
+            }
+        },
+
+
+
         isEmail(email) {
             const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(email)
@@ -690,6 +967,76 @@ var app = new Vue({
         isCorrectTel(telno) {
             return telno.length == 11
         },
+
+
+        validateGuaForm(event) {
+            console.log(this.Gemptyworkguafname ||
+                this.Gemptyworkgualname ||
+                this.Gemptyguareladship ||
+                this.Gemptyguaworkduraton ||
+                this.Gemptyguacity ||
+                this.GemptyguanearestBstop ||
+                this.Gemptyguastreetname ||
+                this.Gemptyguahouseno ||
+                this.Gemptyguagender ||
+                this.Gemptyguastate ||
+                // this.Gemptyguatelno ||
+                this.Gemptyguaarea ||
+                this.Gemptypguafname ||
+                this.Gemptypgualname ||
+                this.Gemptypguareladship ||
+                this.Gemptypguaworkduraton ||
+                this.Gemptypguacity ||
+                this.GemptypguanearestBstop ||
+                this.Gemptypguastreetname ||
+                this.Gemptypguahouseno ||
+                this.Gemptypguagender ||
+                this.Gemptypguastate ||
+                // this.Gemptypguatelno ||
+                this.Gemptypguaarea)
+
+            if (this.Gemptyworkguafname ||
+                this.Gemptyworkgualname ||
+                this.Gemptyguareladship ||
+                this.Gemptyguaworkduraton ||
+                this.Gemptyguacity ||
+                this.GemptyguanearestBstop ||
+                this.Gemptyguastreetname ||
+                this.Gemptyguahouseno ||
+                this.Gemptyguagender ||
+                this.Gemptyguastate ||
+                // this.Gemptyguatelno ||
+                this.Gemptyguaarea ||
+                this.Gemptypguafname ||
+                this.Gemptypgualname ||
+                this.Gemptypguareladship ||
+                this.Gemptypguaworkduraton ||
+                this.Gemptypguacity ||
+                this.GemptypguanearestBstop ||
+                this.Gemptypguastreetname ||
+                this.Gemptypguahouseno ||
+                this.Gemptypguagender ||
+                this.Gemptypguastate ||
+                // this.Gemptypguatelno ||
+                this.Gemptypguaarea) {
+                event.preventDefault()
+                this.submition = true
+                app.errorMessage = 'All field must be filled!';
+                setTimeout(function() {
+                    app.errorMessage = '';
+                }, 10000);
+            } else {
+                event.preventDefault()
+                this.submition = true
+                    // this.saveUpdate();
+                    // this.sendNotification(app.Newdata.fname, app.Newdata.telno);
+                console.log("Prepared for Db");
+                // this.clearfeilds();
+                app.submition = false;
+            }
+
+        },
+
 
         validateForm(event) {
 
@@ -784,6 +1131,38 @@ var app = new Vue({
                 app.submition = false;
             }
         },
+
+
+        saveUpdate: function() {
+            app.submitted = true;
+            app.SelectedGuaData.custId = app.CheckCusId;
+            var formData = app.toFormData(app.SelectedGuaData);
+
+            axios.post("https://wafcolapi.herokuapp.com/api.php?action=update", formData)
+                .then(function(response) {
+                    console.log(response);
+
+                    if (response.data.error) {
+                        app.submitted = false;
+                        app.errorMessageChk = response.data.message;
+
+                        setTimeout(function() {
+                            app.errorMessageChk = '';
+                        }, 10000);
+
+                    } else {
+                        app.submitted = false;
+                        app.successMessageChk = response.data.message;
+
+                        setTimeout(function() {
+                            app.successMessageChk = '';
+                        }, 10000);
+
+                    }
+                });
+
+        },
+
 
         saveUser: function() {
             app.submitted = true;

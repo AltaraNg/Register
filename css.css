@@ -254,6 +254,10 @@ p {
     .jumbotron {
         border-bottom: 0;
     }
+    .modal-dialog {
+        width: 1000px !important;
+        margin: 30px auto;
+    }
 }
 
 
