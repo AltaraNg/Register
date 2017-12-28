@@ -151,6 +151,7 @@ var app = new Vue({
 
         submitted: false,
         submition: false,
+        guasubmition: false,
         emailFeedback: '',
         TelFeedback: '',
         Feedback: '',
@@ -449,12 +450,21 @@ var app = new Vue({
         },
 
         Gemptyworkguafname() {
-            if (this.Work_Guarantor == true && (this.SelectedGuaData.workguafname === '')) {
+            if (this.Work_Guarantor == true && (this.SelectedGuaData.workguafname == "")) {
                 this.Feedback = ERRORS.required;
                 return true
             }
             return false
         },
+
+        // emptyworkguafname() {
+        //     if (this.Work_Guarantor == true && (this.Newdata.workguafname === '')) {
+        //         this.Feedback = ERRORS.required;
+        //         return true
+        //     }
+        //     return false
+        // },
+
         Gemptyworkgualname() {
 
             if (this.Work_Guarantor == true && (this.SelectedGuaData.workgualname === '')) {
@@ -937,8 +947,8 @@ var app = new Vue({
                             app.checKiD = response.data.checklist;
                             if (app.checKiD.length != 0) {
                                 app.showGuaForm = true;
-                                app.SelectedGuaData = app.checKiD;
-                                console.log(app.SelectedGuaData);
+                                // app.SelectedGuaData = app.checKiD;
+                                // console.log(app.SelectedGuaData);
 
                                 app.CustName = response.data.checklist[0].first_name + " " + response.data.checklist[0].last_name
                                     // app.phoneNo = response.data.checklist[0].telephone
@@ -969,33 +979,12 @@ var app = new Vue({
         },
 
 
+        // 
         validateGuaForm(event) {
-            console.log(this.Gemptyworkguafname ||
-                this.Gemptyworkgualname ||
-                this.Gemptyguareladship ||
-                this.Gemptyguaworkduraton ||
-                this.Gemptyguacity ||
-                this.GemptyguanearestBstop ||
-                this.Gemptyguastreetname ||
-                this.Gemptyguahouseno ||
-                this.Gemptyguagender ||
-                this.Gemptyguastate ||
-                // this.Gemptyguatelno ||
-                this.Gemptyguaarea ||
-                this.Gemptypguafname ||
-                this.Gemptypgualname ||
-                this.Gemptypguareladship ||
-                this.Gemptypguaworkduraton ||
-                this.Gemptypguacity ||
-                this.GemptypguanearestBstop ||
-                this.Gemptypguastreetname ||
-                this.Gemptypguahouseno ||
-                this.Gemptypguagender ||
-                this.Gemptypguastate ||
-                // this.Gemptypguatelno ||
-                this.Gemptypguaarea)
+            console.log(this.SelectedGuaData.workguafname);
 
-            if (this.Gemptyworkguafname ||
+            if (
+                this.Gemptyworkguafname ||
                 this.Gemptyworkgualname ||
                 this.Gemptyguareladship ||
                 this.Gemptyguaworkduraton ||
@@ -1005,7 +994,7 @@ var app = new Vue({
                 this.Gemptyguahouseno ||
                 this.Gemptyguagender ||
                 this.Gemptyguastate ||
-                // this.Gemptyguatelno ||
+                this.Gemptyguatelno ||
                 this.Gemptyguaarea ||
                 this.Gemptypguafname ||
                 this.Gemptypgualname ||
@@ -1017,17 +1006,18 @@ var app = new Vue({
                 this.Gemptypguahouseno ||
                 this.Gemptypguagender ||
                 this.Gemptypguastate ||
-                // this.Gemptypguatelno ||
-                this.Gemptypguaarea) {
+                this.Gemptypguatelno ||
+                this.Gemptypguaarea
+            ) {
                 event.preventDefault()
-                this.submition = true
-                app.errorMessage = 'All field must be filled!';
+                this.guasubmition = true
+                app.errorMessageChk = 'All field must be filled!';
                 setTimeout(function() {
-                    app.errorMessage = '';
+                    app.errorMessageChk = '';
                 }, 10000);
             } else {
                 event.preventDefault()
-                this.submition = true
+                this.guasubmition = true
                     // this.saveUpdate();
                     // this.sendNotification(app.Newdata.fname, app.Newdata.telno);
                 console.log("Prepared for Db");
@@ -1194,38 +1184,38 @@ var app = new Vue({
 
         },
         resetgua: function(event) {
-            this.workguafname = '',
-                this.workguamname = '',
-                this.workgualname = '',
-                this.guareladship = '',
-                this.guaworkduraton = '',
-                this.guagender = '',
-                this.guacity = '',
-                this.guastate = '',
-                this.guatelno = '',
-                this.guanearestBstop = '',
-                this.guastreetname = '',
-                this.guahouseno = '',
-                this.guaaddaddinfo = '',
-                this.guaarea = ''
+            this.SelectedGuaData.workguafname = '',
+                this.SelectedGuaData.workguamname = '',
+                this.SelectedGuaData.workgualname = '',
+                this.SelectedGuaData.guareladship = '',
+                this.SelectedGuaData.guaworkduraton = '',
+                this.SelectedGuaData.guagender = '',
+                this.SelectedGuaData.guacity = '',
+                this.SelectedGuaData.guastate = '',
+                this.SelectedGuaData.guatelno = '',
+                this.SelectedGuaData.guanearestBstop = '',
+                this.SelectedGuaData.guastreetname = '',
+                this.SelectedGuaData.guahouseno = '',
+                this.SelectedGuaData.guaaddaddinfo = '',
+                this.SelectedGuaData.guaarea = ''
         },
 
         resetpgua: function(event) {
 
-            this.pguafname = '',
-                this.pguamname = '',
-                this.pgualname = '',
-                this.pguareladship = '',
-                this.pguaworkduraton = '',
-                this.pguagender = '',
-                this.pguacity = '',
-                this.pguastate = '',
-                this.pguatelno = '',
-                this.pguanearestBstop = '',
-                this.pguastreetname = '',
-                this.pguahouseno = '',
-                this.pguaaddaddinfo = '',
-                this.pguaarea = ''
+            this.SelectedGuaData.pguafname = '',
+                this.SelectedGuaData.pguamname = '',
+                this.SelectedGuaData.pgualname = '',
+                this.SelectedGuaData.pguareladship = '',
+                this.SelectedGuaData.pguaworkduraton = '',
+                this.SelectedGuaData.pguagender = '',
+                this.SelectedGuaData.pguacity = '',
+                this.SelectedGuaData.pguastate = '',
+                this.SelectedGuaData.pguatelno = '',
+                this.SelectedGuaData.pguanearestBstop = '',
+                this.SelectedGuaData.pguastreetname = '',
+                this.SelectedGuaData.pguahouseno = '',
+                this.SelectedGuaData.pguaaddaddinfo = '',
+                this.SelectedGuaData.pguaarea = ''
         },
 
 
