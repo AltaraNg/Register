@@ -28,6 +28,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading" style="background-color: #00264d;">Altara Credit Customer Registration</div>
                 <div class="panel-body">
+                    <div class="loading" v-if='submitted'>Loading&#8230;</div>
                     <div class="row" style=" margin:10px;padding:10px;">
                         <div class="col-sm-6" style="margin:0 auto; margin-bottom:10px;">
                             <div style="margin:0 auto; width:250px;"><img src="reg.png" width="40" height="40" />
@@ -951,6 +952,7 @@
 
 
                             <div v-if="!showGuaForm" class="row" style="width: 300px; margin:0 auto;">
+                                <div class="loading" v-if='submitted'>Loading&#8230;</div>
                                 <div class="form-group">
                                     <label for="workguafname">Enter Customer's Identification Number</label>
                                     <input name="workguafname" class="form-control" v-model="CheckCusId" type="text" placeholder="Enter Number Here.." v-model="Newdata.workguafname" class="form-control">
@@ -962,8 +964,10 @@
                             </div>
 
                             <div v-if="showGuaForm">
+                                <div class="loading" v-if='submitted'>Loading&#8230;</div>
                                 <form class="form" id="form" method="POST" v-on:submit="validateGuaForm">
-                                    <div>Your about to update the Guarrantors information for <strong>{{CustName}} </strong> with Customer ID : <strong>{{CheckCusId}}</strong></div>
+                                    <div>Your about to update the Guarrantors information for <strong>{{CustName}} </strong> with Customer ID : <strong>{{
+                                            CheckCusId  }}</strong></div>
                                     <hr>
                                     <h4><strong>Work Guarantor</strong></h4>
                                     <label for="Work Guarantor"> <input type="checkbox"  v-on:click="resetgua" v-model="Work_Guarantor">Tick to fill in Work Guarantors information </label> {{Work_Guarantor}}
@@ -1235,6 +1239,10 @@
                                     </div>
                                     <hr>
                                     <button style="display:block; margin:0 auto;" class="btn btn-success btn-small" style="font-size:12px">Update Guarantor's information</button>
+                                    <br>
+
+                                    <button type="button" @click="showGuaForm = false; CheckCusId=''" class="btn btn-info btn-small" style="display:block; font-size:12px;margin:0 auto;">New Customer</button>
+                                    <br>
                                 </form>
                             </div>
 

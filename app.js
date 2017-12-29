@@ -923,6 +923,7 @@ var app = new Vue({
     methods: {
 
         checkCust: function() {
+            app.submitted = true;
             if (app.CheckCusId == '') {
                 app.errorMessageChk = "Field can't be empty";
                 setTimeout(function() {
@@ -935,6 +936,7 @@ var app = new Vue({
                         Customer_id: app.CheckCusId
                     })
                     .then(function(response) {
+                        app.submitted = false;
                         console.log(response);
                         if (response.data.error) {
                             app.errorMessageChk = response.data.message;
@@ -1014,7 +1016,7 @@ var app = new Vue({
                 app.errorMessageChk = 'All field must be filled!';
                 setTimeout(function() {
                     app.errorMessageChk = '';
-                }, 10000);
+                }, 2000);
             } else {
                 event.preventDefault()
                 this.guasubmition = true
