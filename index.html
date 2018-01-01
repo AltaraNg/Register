@@ -74,6 +74,7 @@
                                 <td> <input v-model="m6b" type="number" class="form-control"></td>
                             </tr>
                             <tr>
+                                <td> <label></label></td>
                                 <td> <label>{{m1b - m1a > 0 ? m1b - m1a : 0 }}</label></td>
                                 <td> <label>{{m2a - m1b > 0 ? m2a - m1b : 0 }}</label></td>
                                 <td> <label>{{m2b - m2a > 0 ? m2b - m2a : 0 }}</label></td>
@@ -85,7 +86,7 @@
                                 <td> <label>{{m5b - m5a > 0 ? m5b - m5a : 0 }}</label></td>
                                 <td> <label>{{m6a - m5b > 0 ? m6a - m5b : 0 }}</label></td>
                                 <td> <label>{{m6b - m6a > 0 ? m6b - m6a : 0 }}</label></td>
-                                <td> <label>{{m1b - m6b > 0 ? m1b - m6b : 0 }}</label></td>
+
                             </tr>
 
                         </table>
@@ -101,22 +102,33 @@
                                     <th>Weekly</th>
                                 </tr>
                                 <tr>
-                                    <td> <label>{{getMax}}</label></td>
-                                    <td> <label></label></td>
-                                    <td> <label></label></td>
-                                    <td> <label></label></td>
-                                    <td> <label></label></td>
+                                    <td> <label>{{ Math.max((m1b - m1a > 0 ? m1b - m1a : 0),(m2a - m1b > 0 ? m2a - m1b : 0),(m2b - m2a > 0 ? m2b - m2a : 0 ),(m3a - m2b > 0 ? m3a - m2b : 0),(m3b - m3a > 0 ? m3b - m3a : 0),(m4a - m3b > 0 ? m4a - m3b : 0),(m4b - m4a > 0 ? m4b - m4a : 0),(m5a - m4b > 0 ? m5a - m4b : 0)
+                                                ,(m5b - m5a > 0 ? m5b - m5a : 0),(m6a - m5b > 0 ? m6a - m5b : 0),(m6b - m6a > 0 ? m6b - m6a : 0))}}</label></td>
+
+                                    <td> <label>{{ ((m1b - m1a > 0 ? m1b - m1a : 0)+(m2a - m1b > 0 ? m2a - m1b : 0)+(m2b - m2a > 0 ? m2b - m2a : 0 )+(m3a - m2b > 0 ? m3a - m2b : 0)+(m3b - m3a > 0 ? m3b - m3a : 0)+(m4a - m3b > 0 ? m4a - m3b : 0)+(m4b - m4a > 0 ? m4b - m4a : 0)+(m5a - m4b > 0 ? m5a - m4b : 0)
+                                            +(m5b - m5a > 0 ? m5b - m5a : 0)+(m6a - m5b > 0 ? m6a - m5b : 0)+(m6b - m6a > 0 ? m6b - m6a : 0))/11}}</label></td>
+
+                                    <td> <label>{{ Math.min((m1b - m1a > 0 ? m1b - m1a : 0),(m2a - m1b > 0 ? m2a - m1b : 0),(m2b - m2a > 0 ? m2b - m2a : 0 ),(m3a - m2b > 0 ? m3a - m2b : 0),(m3b - m3a > 0 ? m3b - m3a : 0),(m4a - m3b > 0 ? m4a - m3b : 0),(m4b - m4a > 0 ? m4b - m4a : 0),(m5a - m4b > 0 ? m5a - m4b : 0)
+                                        ,(m5b - m5a > 0 ? m5b - m5a : 0),(m6a - m5b > 0 ? m6a - m5b : 0),(m6b - m6a > 0 ? m6b - m6a : 0))}}</label></td>
+
+
+                                    <td> <label>{{ ((m1b - m1a > 0 ? m1b - m1a : 0)+(m2a - m1b > 0 ? m2a - m1b : 0)+(m2b - m2a > 0 ? m2b - m2a : 0 )+(m3a - m2b > 0 ? m3a - m2b : 0)+(m3b - m3a > 0 ? m3b - m3a : 0)+(m4a - m3b > 0 ? m4a - m3b : 0)+(m4b - m4a > 0 ? m4b - m4a : 0)+(m5a - m4b > 0 ? m5a - m4b : 0)
+                                                +(m5b - m5a > 0 ? m5b - m5a : 0)+(m6a - m5b > 0 ? m6a - m5b : 0)+(m6b - m6a > 0 ? m6b - m6a : 0))/11}}</label></td>
+
+                                    <td> <label>{{ ((m1b - m1a > 0 ? m1b - m1a : 0)+(m2a - m1b > 0 ? m2a - m1b : 0)+(m2b - m2a > 0 ? m2b - m2a : 0 )+(m3a - m2b > 0 ? m3a - m2b : 0)+(m3b - m3a > 0 ? m3b - m3a : 0)+(m4a - m3b > 0 ? m4a - m3b : 0)+(m4b - m4a > 0 ? m4b - m4a : 0)+(m5a - m4b > 0 ? m5a - m4b : 0)
+                                                        +(m5b - m5a > 0 ? m5b - m5a : 0)+(m6a - m5b > 0 ? m6a - m5b : 0)+(m6b - m6a > 0 ? m6b - m6a : 0))/22}}</label></td>
                                 </tr>
                                 <tr>
 
-
-
                             </table>
                         </div>
+
+
                     </div>
+                    <button @click="Test1" style="display:block; margin:0 auto;" class="btn btn-primary btn-small">Compute</button>
                 </div>
             </div>
-
+            <!-- :disabled="check_gc == 1" -->
 
         </div>
 
