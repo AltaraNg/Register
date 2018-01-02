@@ -34,6 +34,33 @@ var app = new Vue({
         m5b: null,
         m6a: null,
         m6b: null,
+
+        tm1: null,
+        tm2: null,
+        tm3: null,
+        tm4: null,
+        tm5: null,
+        tm6: null,
+        tm7: null,
+        tm8: null,
+        tm9: null,
+        tm10: null,
+        tm11: null,
+        tm12: null,
+
+        sm1: null,
+        sm2: null,
+        sm3: null,
+        sm4: null,
+        sm5: null,
+        sm6: null,
+        sm7: null,
+        sm8: null,
+        sm9: null,
+        sm10: null,
+        sm11: null,
+        sm12: null,
+
         Newdata: {
             fname: '',
             mname: '',
@@ -69,19 +96,22 @@ var app = new Vue({
             this.Average = ((this.m1b - this.m1a > 0 ? this.m1b - this.m1a : 0) + (this.m2a - this.m1b > 0 ? this.m2a - this.m1b : 0) + (this.m2b - this.m2a > 0 ? this.m2b - this.m2a : 0) + (this.m3a - this.m2b > 0 ? this.m3a - this.m2b : 0) + (this.m3b - this.m3a > 0 ? this.m3b - this.m3a : 0) + (this.m4a - this.m3b > 0 ? this.m4a - this.m3b : 0) + (this.m4b - this.m4a > 0 ? this.m4b - this.m4a : 0) + (this.m5a - this.m4b > 0 ? this.m5a - this.m4b : 0) +
                 (this.m5b - this.m5a > 0 ? this.m5b - this.m5a : 0) + (this.m6a - this.m5b > 0 ? this.m6a - this.m5b : 0) + (this.m6b - this.m6a > 0 ? this.m6b - this.m6a : 0)) / 11
             console.log(this.Average);
-            let tm1 = this.Average > this.m1a ? 1 : 0;
-            let tm2 = this.Average > this.m1b ? 1 : 0;
-            let tm3 = this.Average > this.m2a ? 1 : 0;
-            let tm4 = this.Average > this.m2b ? 1 : 0;
-            let tm5 = this.Average > this.m3a ? 1 : 0;
-            let tm6 = this.Average > this.m3b ? 1 : 0;
-            let tm7 = this.Average > this.m4a ? 1 : 0;
-            let tm8 = this.Average > this.m4b ? 1 : 0;
-            let tm9 = this.Average > this.m5a ? 1 : 0;
-            let tm10 = this.Average > this.m5b ? 1 : 0;
-            let tm11 = this.Average > this.m6a ? 1 : 0;
-            let tm12 = this.Average > this.m6b ? 1 : 0;
+            this.tm1 = this.Average > this.m1a ? 1 : 0;
+            this.tm2 = this.Average > this.m1b ? 1 : 0;
+            this.tm3 = this.Average > this.m2a ? 1 : 0;
+            this.tm4 = this.Average > this.m2b ? 1 : 0;
+            this.tm5 = this.Average > this.m3a ? 1 : 0;
+            this.tm6 = this.Average > this.m3b ? 1 : 0;
+            this.tm7 = this.Average > this.m4a ? 1 : 0;
+            this.tm8 = this.Average > this.m4b ? 1 : 0;
+            this.tm9 = this.Average > this.m5a ? 1 : 0;
+            this.tm10 = this.Average > this.m5b ? 1 : 0;
+            this.tm11 = this.Average > this.m6a ? 1 : 0;
+            this.tm12 = this.Average > this.m6b ? 1 : 0;
+
             console.log(tm1);
+
+
         },
 
         stripTheGarbage(e) {
