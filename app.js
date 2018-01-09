@@ -11,8 +11,8 @@ var app = new Vue({
         successMessageChk: '',
         CheckCusId: "",
         register: false,
-        Personal_Guarantor: '',
-        Work_Guarantor: '',
+        Personal_Guarantor: false,
+        Work_Guarantor: false,
         errorMessage: "",
         successMessage: "",
         Newdata: {
@@ -978,12 +978,16 @@ var app = new Vue({
             return telno.length == 11
         },
 
-
-        // 
         validateGuaForm(event) {
-            console.log(this.SelectedGuaData.workguafname);
-
-            if (
+            console.log(app.Personal_Guarantor + app.Work_Guarantor)
+            if (app.Personal_Guarantor == false && app.Work_Guarantor == false) {
+                event.preventDefault()
+                this.guasubmition = true
+                app.errorMessageChk = 'Noting to Update';
+                setTimeout(function() {
+                    app.errorMessageChk = '';
+                }, 2000);
+            } else if (
                 this.Gemptyworkguafname ||
                 this.Gemptyworkgualname ||
                 this.Gemptyguareladship ||
@@ -1014,15 +1018,15 @@ var app = new Vue({
                 app.errorMessageChk = 'All field must be filled!';
                 setTimeout(function() {
                     app.errorMessageChk = '';
-                }, 10000);
+                }, 2000);
             } else {
                 event.preventDefault()
                 this.guasubmition = true
-                    // this.saveUpdate();
-                    // this.sendNotification(app.Newdata.fname, app.Newdata.telno);
+                this.saveUpdate();
+                // this.sendNotification(app.Newdata.fname, app.Newdata.telno);
                 console.log("Prepared for Db");
-                // this.clearfeilds();
-                app.submition = false;
+                this.guaclearfeilds();
+                app.guasubmition = false;
             }
 
         },
@@ -1108,7 +1112,7 @@ var app = new Vue({
                 app.errorMessage = 'All field must be filled!';
                 setTimeout(function() {
                     app.errorMessage = '';
-                }, 10000);
+                }, 2000);
 
 
             } else {
@@ -1125,34 +1129,44 @@ var app = new Vue({
 
         saveUpdate: function() {
             app.submitted = true;
+            if (app.Work_Guarantor == false) {
+                app.SelectedGuaData.work_g = 0;
+            } else {
+                app.SelectedGuaData.work_g = 1;
+            }
+            if (app.Personal_Guarantor == false) {
+                app.SelectedGuaData.personal_g = 0
+            } else {
+                app.SelectedGuaData.personal_g = 1
+            }
+
             app.SelectedGuaData.custId = app.CheckCusId;
+            console.log(app.SelectedGuaData);
             var formData = app.toFormData(app.SelectedGuaData);
 
-            axios.post("https://wafcolapi.herokuapp.com/api.php?action=update", formData)
-                .then(function(response) {
-                    console.log(response);
+            axios.post("http://localhost/wapcol_api/api.php?action=update", formData)
+                .then(function(response1) {
+                    console.log(response1);
 
-                    if (response.data.error) {
+                    if (response1.data.error) {
                         app.submitted = false;
-                        app.errorMessageChk = response.data.message;
+                        app.errorMessageChk = response1.data.message;
 
                         setTimeout(function() {
                             app.errorMessageChk = '';
-                        }, 10000);
+                        }, 3000);
 
                     } else {
                         app.submitted = false;
-                        app.successMessageChk = response.data.message;
+                        app.successMessageChk = response1.data.message;
 
                         setTimeout(function() {
                             app.successMessageChk = '';
-                        }, 10000);
-
+                        }, 3000);
                     }
                 });
 
         },
-
 
         saveUser: function() {
             app.submitted = true;
@@ -1168,7 +1182,7 @@ var app = new Vue({
 
                         setTimeout(function() {
                             app.errorMessage = '';
-                        }, 10000);
+                        }, 5000);
 
 
                     } else {
@@ -1177,7 +1191,7 @@ var app = new Vue({
 
                         setTimeout(function() {
                             app.successMessage = '';
-                        }, 10000);
+                        }, 5000);
 
                     }
                 });
@@ -1255,6 +1269,40 @@ var app = new Vue({
         resetMessage: function(event) {
             app.successMessage = '';
             app.errorMessage = '';
+        },
+
+        guaclearfeilds: function() {
+            app.SelectedGuaData = {
+                custId: '',
+                workguafname: '',
+                workguamname: '',
+                workgualname: '',
+                guareladship: '',
+                guaworkduraton: '',
+                guagender: '',
+                guacity: '',
+                guastate: '',
+                guatelno: '',
+                pguafname: '',
+                pguamname: '',
+                pgualname: '',
+                pguareladship: '',
+                pguaworkduraton: '',
+                pguagender: '',
+                pguacity: '',
+                pguastate: '',
+                pguatelno: '',
+                guanearestBstop: '',
+                guastreetname: '',
+                guahouseno: '',
+                guaaddaddinfo: '',
+                pguanearestBstop: '',
+                pguastreetname: '',
+                pguahouseno: '',
+                pguaaddaddinfo: '',
+                pguaarea: '',
+                guaarea: '',
+            }
         },
 
         clearfeilds: function() {

@@ -931,6 +931,7 @@
                 </div>
             </div>
 
+
             <div id="myModal2" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -962,7 +963,7 @@
                             </div>
 
                             <div v-if="showGuaForm">
-                                <form class="form" id="form" method="POST" v-on:submit="validateGuaForm">
+                                <form v-on:submit="validateGuaForm">
                                     <div>Your about to update the Guarrantors information for <strong>{{CustName}} </strong> with Customer ID : <strong>{{CheckCusId}}</strong></div>
                                     <hr>
                                     <h4><strong>Work Guarantor</strong></h4>
@@ -1071,11 +1072,11 @@
                                                 <div class="form-group" v-bind:class="{ 'has-error': guasubmition && Gemptyguastate }">
                                                     <label for="days" class=" control-label">State</label>
                                                     <select id="days" class="form-control" v-model=" SelectedGuaData.guastate">
-                                    <option value="">Select</option>
-                                    <option v-for="(State, $index) in StateOptions"
-                                    :value="StateOptions[$index]">{{ State }}
-                            </option>
-                                </select>
+                                <option value="">Select</option>
+                                <option v-for="(State, $index) in StateOptions"
+                                :value="StateOptions[$index]">{{ State }}
+                        </option>
+                            </select>
                                                     <span class="help-block" v-if="guasubmition && Gemptyguastate">{{Feedback}}</span>
                                                 </div>
 
@@ -1087,11 +1088,11 @@
                                                 <div class="" v-bind:class="{ 'has-error': guasubmition && Gemptyguaworkduraton}">
                                                     <label for="dura" class=" control-label">Duration in current work</label>
                                                     <select id="dura" class="form-control" v-model=" SelectedGuaData.guaworkduraton">
-                                    <option value="">Select</option>
-                                    <option v-for="(dura, $index) in ['less than 1 year','1 year','2 years','3 years', 'between 4 - 9 years', 'more than 10 years', 'more than 20 years']"
-                                    :value="['less than 1 year','1 year','2 years','3 years', 'between 4 - 9 years' , 'more than 10 years', 'more than 20 years'][$index]">{{ dura }}
-                            </option>
-                                </select>
+                                <option value="">Select</option>
+                                <option v-for="(dura, $index) in ['less than 1 year','1 year','2 years','3 years', 'between 4 - 9 years', 'more than 10 years', 'more than 20 years']"
+                                :value="['less than 1 year','1 year','2 years','3 years', 'between 4 - 9 years' , 'more than 10 years', 'more than 20 years'][$index]">{{ dura }}
+                        </option>
+                            </select>
                                                     <span class="help-block" v-if="guasubmition && Gemptyguaworkduraton">{{Feedback}}</span>
                                                 </div>
                                             </div>
@@ -1210,11 +1211,11 @@
                                                 <div class="form-group" v-bind:class="{ 'has-error': guasubmition && Gemptypguastate }">
                                                     <label for="days" class=" control-label">State</label>
                                                     <select id="days" class="form-control" v-model=" SelectedGuaData.pguastate">
-                                    <option value="">Select</option>
-                                    <option v-for="(State, $index) in StateOptions"
-                                    :value="StateOptions[$index]">{{ State }}
-                            </option>
-                                </select>
+                                <option value="">Select</option>
+                                <option v-for="(State, $index) in StateOptions"
+                                :value="StateOptions[$index]">{{ State }}
+                        </option>
+                            </select>
                                                     <span class="help-block" v-if="guasubmition && Gemptypguastate">{{Feedback}}</span> </div>
                                             </div>
 
@@ -1222,11 +1223,11 @@
                                                 <div class="" v-bind:class="{ 'has-error': guasubmition && Gemptypguaworkduraton}">
                                                     <label for="dura" class=" control-label">Duration in current work</label>
                                                     <select id="dura" class="form-control" v-model=" SelectedGuaData.pguaworkduraton">
-                                    <option value="">Select</option>
-                                    <option v-for="(dura, $index) in ['less than 1 year','1 year','2 years','3 years', 'between 4 - 9 years', 'more than 10 years', 'more than 20 years']"
-                                    :value="['less than 1 year','1 year','2 years','3 years', 'between 4 - 9 years' , 'more than 10 years', 'more than 20 years'][$index]">{{ dura }}
-                            </option>
-                                </select>
+                                <option value="">Select</option>
+                                <option v-for="(dura, $index) in ['less than 1 year','1 year','2 years','3 years', 'between 4 - 9 years', 'more than 10 years', 'more than 20 years']"
+                                :value="['less than 1 year','1 year','2 years','3 years', 'between 4 - 9 years' , 'more than 10 years', 'more than 20 years'][$index]">{{ dura }}
+                        </option>
+                            </select>
                                                     <span class="help-block" v-if="guasubmition && Gemptypguaworkduraton">{{Feedback}}</span>
                                                 </div>
                                             </div>
@@ -1234,7 +1235,9 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <button style="display:block; margin:0 auto;" class="btn btn-success btn-small" style="font-size:12px">Update Guarantor's information</button>
+                                    <button style="display:block; margin:0 auto;font-size:12px" class="btn btn-success btn-small">Update Guarantor's information</button>
+                                    <br>
+                                    <button style="display:block; margin:0 auto;font-size:12px" @click="showGuaForm = false" class="btn btn-success btn-small">Reset</button>
                                 </form>
                             </div>
 
@@ -1245,16 +1248,19 @@
                     </div>
                 </div>
             </div>
+
+
         </div>
 
-    </div>
+        <script type="text/javascript" src="axios.js">
+        </script>
+        <!-- <script type="text/javascript" src="https://unpkg.com/vue@2.5.2">
+    </script> -->
 
-    <script type="text/javascript" src="axios.js">
-    </script>
-    <script type="text/javascript" src="https://unpkg.com/vue@2.5.2">
-    </script>
-    <script type="text/javascript" src="app.js">
-    </script>
+        <script type="text/javascript" src="vue.js">
+        </script>
+        <script type="text/javascript" src="app.js">
+        </script>
 
 </body>
 
