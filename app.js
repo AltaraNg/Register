@@ -1119,7 +1119,7 @@ var app = new Vue({
                 event.preventDefault()
                 this.submition = true
                 this.saveUser();
-                this.sendNotification(app.Newdata.fname, app.Newdata.telno);
+               // this.sendNotification(app.Newdata.fname, app.Newdata.telno);
                 console.log("Prepared for Db");
                 this.clearfeilds();
                 app.submition = false;
