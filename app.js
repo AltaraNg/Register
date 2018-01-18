@@ -931,7 +931,7 @@ var app = new Vue({
 
             } else {
 
-                axios.post("https://wafcolapi.herokuapp.com/api.php?action=checkId", {
+                axios.post("https://altara-api.herokuapp.com/api.php?action=checkId", {
                         Customer_id: app.CheckCusId
                     })
                     .then(function(response) {
@@ -1144,7 +1144,7 @@ var app = new Vue({
             console.log(app.SelectedGuaData);
             var formData = app.toFormData(app.SelectedGuaData);
 
-            axios.post("http://localhost/wapcol_api/api.php?action=update", formData)
+            axios.post("https://altara-api.herokuapp.com/api.php?action=update", formData)
                 .then(function(response1) {
                     console.log(response1);
 
@@ -1172,7 +1172,7 @@ var app = new Vue({
             app.submitted = true;
             var formData = app.toFormData(app.Newdata);
 
-            axios.post("https://wafcolapi.herokuapp.com/api.php?action=create", formData)
+            axios.post("https://altara-api.herokuapp.com/api.php?action=create", formData)
                 .then(function(response) {
                     console.log(response);
 
