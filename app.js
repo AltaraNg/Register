@@ -7,9 +7,15 @@ const ERRORS = {
 var app = new Vue({
     el: '#root',
     data: {
+        dataloaded: false,
+        Employee_id: '',
+        Access_code: '',
+        access_granted: false,
         search: '',
         list_customers: [],
         errorMessageChk: '',
+        successMessageReg: '',
+        errorMessageReg: '',
         successMessageChk: '',
         CheckCusId: "",
         register: false,
@@ -929,10 +935,72 @@ var app = new Vue({
 
     methods: {
 
+        GainAccess: function () {
+
+            if (app.Employee_id == '' || app.Access_code == '') {
+
+                app.errorMessage = "Access Denied!, All field must be filled";
+
+                setTimeout(function () {
+                    app.errorMessage = '';
+                }, 2000);
+            } else {
+
+                app.submitted = true
+                var dat = {
+                    Employee_id: app.Employee_id,
+                    Access_code: app.Access_code
+                }
+                var formData = app.toFormData(dat);
+                console.log()
+                axios.post("https://altara-api.herokuapp.com/api.php?action=aknowledge", formData)
+                    .then(function (response) {
+                        app.submitted = false;
+                        console.log(response);
+                        if (response.data.error) {
+                            app.errorMessage = response.data.message;
+
+                            setTimeout(function () {
+                                app.errorMessage = '';
+                            }, 2000);
+
+                        } else {
+                            if (response.data.data.length != 0) {
+
+                                if (response.data.data[0].Employee_Role_id == 10 || response.data.data[0].Employee_Role_id == 8 || response.data.data[0].Employee_Role_id == 7) {
+                                    app.access_granted = true;
+                                    app.successMessage = "Access Granted!, Enter Customer ID below";
+
+                                    setTimeout(function () {
+                                        app.successMessage = '';
+                                    }, 2000);
+                                } else {
+                                    app.errorMessage = "Access Denied, Wrong Login Details";
+
+                                    setTimeout(function () {
+                                        app.errorMessage = '';
+                                    }, 2000);
+                                }
+                            }
+
+                            else {
+
+                                app.errorMessage = "Access Denied, Wrong Login Details";
+
+                                setTimeout(function () {
+                                    app.errorMessage = '';
+                                }, 2000);
+                            }
+
+                        }
+                    });
+            }
+        },
+
         ListCustomers: function () {
             axios.get("https://altara-api.herokuapp.com/api.php?action=list")
                 .then(function (response) {
-                      console.log(response); 
+                    console.log(response);
                     if (response.data.error) {
                         app.errorMessage = response.data.message;
                     } else {
@@ -1052,97 +1120,103 @@ var app = new Vue({
 
 
         validateForm(event) {
+            event.preventDefault()
 
-            var i = 0;
-            while (i <= (app.Newdata.checkedDofWork).length - 1) {
-                if ((app.Newdata.checkedDofWork).length - 1 === i) {
-                    app.Newdata.DofWork = app.Newdata.DofWork + app.Newdata.checkedDofWork[i];
-                } else {
-                    app.Newdata.DofWork = app.Newdata.DofWork + app.Newdata.checkedDofWork[i] + ',';
-                }
-                i++;
-            }
+            app.successMessageReg = "Yes";
 
-            console.log(this.checkbizdetails);
-            console.log(app.Newdata);
+            setTimeout(function () {
+                app.successMessageReg = '';
+            }, 5000);
+            // var i = 0;
+            // while (i <= (app.Newdata.checkedDofWork).length - 1) {
+            //     if ((app.Newdata.checkedDofWork).length - 1 === i) {
+            //         app.Newdata.DofWork = app.Newdata.DofWork + app.Newdata.checkedDofWork[i];
+            //     } else {
+            //         app.Newdata.DofWork = app.Newdata.DofWork + app.Newdata.checkedDofWork[i] + ',';
+            //     }
+            //     i++;
+            // }
 
-            if (
-                this.emptyfname ||
-                this.emptylname ||
-                this.emptynearestBstop ||
-                this.emptystreetname ||
-                this.emptyhouseno ||
-                this.emptycity ||
-                this.emptystate ||
-                this.wrongTel ||
-                this.untickgender ||
-                this.untickCivil ||
-                this.untickhome ||
-                this.unticknorooms ||
-                this.emptyduration ||
-                this.emptyhouseholdno ||
-                this.emptyworkno ||
-                this.emptydependno ||
-                this.emptychildrenno ||
-                this.emptyeducation ||
-                this.emptyvisittime_to ||
-                this.emptyvisittime_fro ||
-                this.emptynextofkinfname ||
-                this.emptynextofkinlname ||
-                this.emptynextofkin ||
-                this.emptynokgender ||
-                this.emptynoktelno ||
-                this.emptynokduraton ||
-                this.emptyworkguafname ||
-                this.emptyworkgualname ||
-                this.emptyguareladship ||
-                this.emptyguaworkduraton ||
-                this.emptyguacity ||
-                this.emptyguanearestBstop ||
-                this.emptyguastreetname ||
-                this.emptyguahouseno ||
-                this.emptyguagender ||
-                this.emptyguastate ||
-                this.emptyguatelno ||
-                this.emptyguaarea ||
-                this.emptypguafname ||
-                this.emptypgualname ||
-                this.emptypguareladship ||
-                this.emptypguaworkduraton ||
-                this.emptypguacity ||
-                this.emptypguanearestBstop ||
-                this.emptypguastreetname ||
-                this.emptypguahouseno ||
-                this.emptypguagender ||
-                this.emptypguastate ||
-                this.emptypguatelno ||
-                this.emptypguaarea ||
-                this.checkloandetails ||
-                this.checkworkdetails ||
-                this.emptyEmpname ||
-                this.emptyEmpnumber ||
-                this.emptyRegdate ||
-                this.emptyaddarea ||
-                this.checkbizdetails ||
-                this.checksaldetails
-            ) {
-                event.preventDefault()
-                this.submition = true
-                app.errorMessage = 'All field must be filled!';
-                setTimeout(function () {
-                    app.errorMessage = '';
-                }, 2000);
+            // console.log(this.checkbizdetails);
+            // console.log(app.Newdata);
+
+            // if (
+            //     this.emptyfname ||
+            //     this.emptylname ||
+            //     this.emptynearestBstop ||
+            //     this.emptystreetname ||
+            //     this.emptyhouseno ||
+            //     this.emptycity ||
+            //     this.emptystate ||
+            //     this.wrongTel ||
+            //     this.untickgender ||
+            //     this.untickCivil ||
+            //     this.untickhome ||
+            //     this.unticknorooms ||
+            //     this.emptyduration ||
+            //     this.emptyhouseholdno ||
+            //     this.emptyworkno ||
+            //     this.emptydependno ||
+            //     this.emptychildrenno ||
+            //     this.emptyeducation ||
+            //     this.emptyvisittime_to ||
+            //     this.emptyvisittime_fro ||
+            //     this.emptynextofkinfname ||
+            //     this.emptynextofkinlname ||
+            //     this.emptynextofkin ||
+            //     this.emptynokgender ||
+            //     this.emptynoktelno ||
+            //     this.emptynokduraton ||
+            //     this.emptyworkguafname ||
+            //     this.emptyworkgualname ||
+            //     this.emptyguareladship ||
+            //     this.emptyguaworkduraton ||
+            //     this.emptyguacity ||
+            //     this.emptyguanearestBstop ||
+            //     this.emptyguastreetname ||
+            //     this.emptyguahouseno ||
+            //     this.emptyguagender ||
+            //     this.emptyguastate ||
+            //     this.emptyguatelno ||
+            //     this.emptyguaarea ||
+            //     this.emptypguafname ||
+            //     this.emptypgualname ||
+            //     this.emptypguareladship ||
+            //     this.emptypguaworkduraton ||
+            //     this.emptypguacity ||
+            //     this.emptypguanearestBstop ||
+            //     this.emptypguastreetname ||
+            //     this.emptypguahouseno ||
+            //     this.emptypguagender ||
+            //     this.emptypguastate ||
+            //     this.emptypguatelno ||
+            //     this.emptypguaarea ||
+            //     this.checkloandetails ||
+            //     this.checkworkdetails ||
+            //     this.emptyEmpname ||
+            //     this.emptyEmpnumber ||
+            //     this.emptyRegdate ||
+            //     this.emptyaddarea ||
+            //     this.checkbizdetails ||
+            //     this.checksaldetails
+            // ) {
+            //     event.preventDefault()
+            //     this.submition = true
+            //     app.errorMessageReg = 'All field must be filled!';
+            //     setTimeout(function () {
+            //         app.errorMessage = '';
+            //     }, 2000);
 
 
-            } else {
-                event.preventDefault()
-                this.submition = true
-                this.saveUser();
-                this.sendNotification(app.Newdata.fname, app.Newdata.telno);
-                console.log("Prepared for Db");
-                this.clearfeilds();
-                app.submition = false;
-            }
+            // } else {
+            //     event.preventDefault()
+            //     this.submition = true
+            //     this.saveUser();
+            //     this.sendNotification(app.Newdata.fname, app.Newdata.telno);
+            //     console.log("Prepared for Db");
+            //     this.clearfeilds();
+            //     app.submition = false;
+            // }
         },
 
 
@@ -1188,7 +1262,7 @@ var app = new Vue({
         },
 
         saveUser: function () {
-            app.submitted = true;
+            app.dataloaded = true;
             var formData = app.toFormData(app.Newdata);
 
             axios.post("https://altara-api.herokuapp.com/api.php?action=create", formData)
@@ -1196,20 +1270,20 @@ var app = new Vue({
                     console.log(response);
 
                     if (response.data.error) {
-                        app.submitted = false;
-                        app.errorMessage = response.data.message;
+                        app.dataloaded = false;
+                        app.errorMessageReg = response.data.message;
 
                         setTimeout(function () {
-                            app.errorMessage = '';
+                            app.errorMessageReg = '';
                         }, 5000);
 
 
                     } else {
-                        app.submitted = false;
-                        app.successMessage = response.data.message;
+                        app.dataloaded = false;
+                        app.successMessageReg = response.data.message;
 
                         setTimeout(function () {
-                            app.successMessage = '';
+                            app.successMessageReg = '';
                         }, 5000);
 
                     }
@@ -1288,6 +1362,10 @@ var app = new Vue({
         resetMessage: function (event) {
             app.successMessage = '';
             app.errorMessage = '';
+            app.successMessageChk = '';
+            app.errorMessageChk = '';
+            app.successMessageReg = '';
+            app.errorMessageReg = '';
         },
 
         guaclearfeilds: function () {
@@ -1429,7 +1507,6 @@ var app = new Vue({
             let message = "Dear " + name + ", Welcome to Altara Credit Limited. You are required to bring the following documents. 1. Proof of ID, 2. Passport Photo (2), 3. Utility bill(Nepa, Not later than 3 months), 4. Six Months Bank Statement till date,  5. Gurantor's cheque.";
             axios.get("https://api.infobip.com/sms/1/text/query?username=Oluwatoke12&password=Altara99&to=" + 234 + telnumber + "&text=" + message + "")
                 .then(function (response2) {
-
                     console.log(response2);
                     if (response2.status == 200) {
                         updateRemark(Updata)

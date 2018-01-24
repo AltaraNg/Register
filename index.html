@@ -23,14 +23,39 @@
                                         <img src="altara_logo.png" alt="" style="width:213px; height:80px;">
                                         <h1 style="color: #00264d ; text-align:center"> Customer Registration Portal</h1>
                                     </div>
-                    
+                                    <div class="loading" v-if='submitted'>Loading&#8230;</div>
+                                    <p class="alert alert-danger alert-dismissable" v-if='errorMessage'>
+                                        <a href="#" class="close" v-on:click="resetMessage" data-dismiss="alert" aria-label="close">&times;</a> {{errorMessage}}
+                                    </p>
+                                    <p class="alert alert-success alert-dismissable" v-if='successMessage'>
+                                        <a href="#" class="close" v-on:click="resetMessage" data-dismiss="alert" aria-label="close">&times;</a> {{successMessage}}
+                                    </p>
                                 </header>
                     
                                 <div class="panel panel-primary">
                                     <div class="panel-heading" style="background-color: #00264d;">Altara Credit Customer Registration</div>
                                     <div class="panel-body">
-                                        
-                                        <div class="row" style=" margin:10px;padding:10px;">
+
+                                        <div v-if="!access_granted">
+                                            <div class="row " style="padding:40px;">
+                                                <div class="col-sm-6 form-group">
+                                                    <label>Direct Sales Agent ID</label>
+                                                    <input type="text" placeholder="Enter DVA ID.." v-model="Employee_id" class="form-control">
+            
+                                                </div>
+                                                <div class="col-sm-6 form-group">
+                                                    <label>Access Code</label>
+                                                    <input type="text" placeholder="Enter Access code Here.." v-model="Access_code" class="form-control">
+            
+                                                </div>
+            
+                                            </div>
+            
+                                            <button type="button" @click="GainAccess()" class="btn btn-success btn-small" style="display:block; font-size:12px;margin:0 auto;">Login</button>
+                                            <br>
+                                        </div>
+
+                                        <div v-if="access_granted" class="row" style=" margin:10px;padding:10px;">
                                             <div class="col-sm-4" style="margin:0 auto; margin-bottom:10px;">
                                                 <div style="margin:0 auto; width:250px;"><img src="reg.png" width="40" height="40" />
                                                     <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-small" style="font-size:12px">Register Customer</button>
@@ -64,13 +89,13 @@
                                             <div class="panel-body">
                                                 <div class="clear"></div>
                                                 <hr>
-                                                <div class="loading" v-if='submitted'>Loading&#8230;</div>
-                                                <p class="alert alert-danger alert-dismissable" v-if='errorMessage'>
-                                                    <a href="#" class="close" v-on:click="resetMessage" data-dismiss="alert" aria-label="close">&times;</a> {{errorMessage}}
-                                                </p>
-                                                <p class="alert alert-success alert-dismissable" v-if='successMessage'>
-                                                    <a href="#" class="close" v-on:click="resetMessage" data-dismiss="alert" aria-label="close">&times;</a> {{successMessage}}
-                                                </p>
+                                                <div class="loading" v-if='dataloaded'>Loading&#8230;</div>
+                                                <p class="alert alert-danger alert-dismissable" v-if='errorMessageReg'>
+                                                        <a href="#" class="close" v-on:click="resetMessage" data-dismiss="alert" aria-label="close">&times;</a> {{errorMessage}}
+                                                    </p>
+                                                    <p class="alert alert-success alert-dismissable" v-if='successMessageReg'>
+                                                        <a href="#" class="close" v-on:click="resetMessage" data-dismiss="alert" aria-label="close">&times;</a> {{successMessage}}
+                                                    </p>
                                                 <form class="form" id="form" method="POST" v-on:submit="validateForm">
                     
                                                     <div class="col-sm-12">
