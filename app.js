@@ -1120,103 +1120,98 @@ var app = new Vue({
 
 
         validateForm(event) {
-            event.preventDefault()
+           
+            var i = 0;
+            while (i <= (app.Newdata.checkedDofWork).length - 1) {
+                if ((app.Newdata.checkedDofWork).length - 1 === i) {
+                    app.Newdata.DofWork = app.Newdata.DofWork + app.Newdata.checkedDofWork[i];
+                } else {
+                    app.Newdata.DofWork = app.Newdata.DofWork + app.Newdata.checkedDofWork[i] + ',';
+                }
+                i++;
+            }
 
-            app.successMessageReg = "Yes";
+            console.log(this.checkbizdetails);
+            console.log(app.Newdata);
 
-            setTimeout(function () {
-                app.successMessageReg = '';
-            }, 5000);
-            // var i = 0;
-            // while (i <= (app.Newdata.checkedDofWork).length - 1) {
-            //     if ((app.Newdata.checkedDofWork).length - 1 === i) {
-            //         app.Newdata.DofWork = app.Newdata.DofWork + app.Newdata.checkedDofWork[i];
-            //     } else {
-            //         app.Newdata.DofWork = app.Newdata.DofWork + app.Newdata.checkedDofWork[i] + ',';
-            //     }
-            //     i++;
-            // }
+            if (
+                this.emptyfname ||
+                this.emptylname ||
+                this.emptynearestBstop ||
+                this.emptystreetname ||
+                this.emptyhouseno ||
+                this.emptycity ||
+                this.emptystate ||
+                this.wrongTel ||
+                this.untickgender ||
+                this.untickCivil ||
+                this.untickhome ||
+                this.unticknorooms ||
+                this.emptyduration ||
+                this.emptyhouseholdno ||
+                this.emptyworkno ||
+                this.emptydependno ||
+                this.emptychildrenno ||
+                this.emptyeducation ||
+                this.emptyvisittime_to ||
+                this.emptyvisittime_fro ||
+                this.emptynextofkinfname ||
+                this.emptynextofkinlname ||
+                this.emptynextofkin ||
+                this.emptynokgender ||
+                this.emptynoktelno ||
+                this.emptynokduraton ||
+                this.emptyworkguafname ||
+                this.emptyworkgualname ||
+                this.emptyguareladship ||
+                this.emptyguaworkduraton ||
+                this.emptyguacity ||
+                this.emptyguanearestBstop ||
+                this.emptyguastreetname ||
+                this.emptyguahouseno ||
+                this.emptyguagender ||
+                this.emptyguastate ||
+                this.emptyguatelno ||
+                this.emptyguaarea ||
+                this.emptypguafname ||
+                this.emptypgualname ||
+                this.emptypguareladship ||
+                this.emptypguaworkduraton ||
+                this.emptypguacity ||
+                this.emptypguanearestBstop ||
+                this.emptypguastreetname ||
+                this.emptypguahouseno ||
+                this.emptypguagender ||
+                this.emptypguastate ||
+                this.emptypguatelno ||
+                this.emptypguaarea ||
+                this.checkloandetails ||
+                this.checkworkdetails ||
+                this.emptyEmpname ||
+                this.emptyEmpnumber ||
+                this.emptyRegdate ||
+                this.emptyaddarea ||
+                this.checkbizdetails ||
+                this.checksaldetails
+            ) {
+                event.preventDefault()
+                this.submition = true
+                app.errorMessageReg = 'All field must be filled!';
 
-            // console.log(this.checkbizdetails);
-            // console.log(app.Newdata);
-
-            // if (
-            //     this.emptyfname ||
-            //     this.emptylname ||
-            //     this.emptynearestBstop ||
-            //     this.emptystreetname ||
-            //     this.emptyhouseno ||
-            //     this.emptycity ||
-            //     this.emptystate ||
-            //     this.wrongTel ||
-            //     this.untickgender ||
-            //     this.untickCivil ||
-            //     this.untickhome ||
-            //     this.unticknorooms ||
-            //     this.emptyduration ||
-            //     this.emptyhouseholdno ||
-            //     this.emptyworkno ||
-            //     this.emptydependno ||
-            //     this.emptychildrenno ||
-            //     this.emptyeducation ||
-            //     this.emptyvisittime_to ||
-            //     this.emptyvisittime_fro ||
-            //     this.emptynextofkinfname ||
-            //     this.emptynextofkinlname ||
-            //     this.emptynextofkin ||
-            //     this.emptynokgender ||
-            //     this.emptynoktelno ||
-            //     this.emptynokduraton ||
-            //     this.emptyworkguafname ||
-            //     this.emptyworkgualname ||
-            //     this.emptyguareladship ||
-            //     this.emptyguaworkduraton ||
-            //     this.emptyguacity ||
-            //     this.emptyguanearestBstop ||
-            //     this.emptyguastreetname ||
-            //     this.emptyguahouseno ||
-            //     this.emptyguagender ||
-            //     this.emptyguastate ||
-            //     this.emptyguatelno ||
-            //     this.emptyguaarea ||
-            //     this.emptypguafname ||
-            //     this.emptypgualname ||
-            //     this.emptypguareladship ||
-            //     this.emptypguaworkduraton ||
-            //     this.emptypguacity ||
-            //     this.emptypguanearestBstop ||
-            //     this.emptypguastreetname ||
-            //     this.emptypguahouseno ||
-            //     this.emptypguagender ||
-            //     this.emptypguastate ||
-            //     this.emptypguatelno ||
-            //     this.emptypguaarea ||
-            //     this.checkloandetails ||
-            //     this.checkworkdetails ||
-            //     this.emptyEmpname ||
-            //     this.emptyEmpnumber ||
-            //     this.emptyRegdate ||
-            //     this.emptyaddarea ||
-            //     this.checkbizdetails ||
-            //     this.checksaldetails
-            // ) {
-            //     event.preventDefault()
-            //     this.submition = true
-            //     app.errorMessageReg = 'All field must be filled!';
-            //     setTimeout(function () {
-            //         app.errorMessage = '';
-            //     }, 2000);
+                setTimeout(function () {
+                    app.errorMessageReg = '';
+                }, 20000);
 
 
-            // } else {
-            //     event.preventDefault()
-            //     this.submition = true
-            //     this.saveUser();
-            //     this.sendNotification(app.Newdata.fname, app.Newdata.telno);
-            //     console.log("Prepared for Db");
-            //     this.clearfeilds();
-            //     app.submition = false;
-            // }
+            } else {
+                event.preventDefault()
+                this.submition = true
+                this.saveUser();
+                this.sendNotification(app.Newdata.fname, app.Newdata.telno);
+                console.log("Prepared for Db");
+                this.clearfeilds();
+                app.submition = false;
+            }
         },
 
 
@@ -1365,7 +1360,6 @@ var app = new Vue({
             app.successMessageChk = '';
             app.errorMessageChk = '';
             app.successMessageReg = '';
-            app.errorMessageReg = '';
         },
 
         guaclearfeilds: function () {

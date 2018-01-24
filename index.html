@@ -91,10 +91,10 @@
                                                 <hr>
                                                 <div class="loading" v-if='dataloaded'>Loading&#8230;</div>
                                                 <p class="alert alert-danger alert-dismissable" v-if='errorMessageReg'>
-                                                        <a href="#" class="close" v-on:click="resetMessage" data-dismiss="alert" aria-label="close">&times;</a> {{errorMessage}}
+                                                        <a href="#" class="close" v-on:click="resetMessage" data-dismiss="alert" aria-label="close">&times;</a> {{errorMessageReg}}
                                                     </p>
                                                     <p class="alert alert-success alert-dismissable" v-if='successMessageReg'>
-                                                        <a href="#" class="close" v-on:click="resetMessage" data-dismiss="alert" aria-label="close">&times;</a> {{successMessage}}
+                                                        <a href="#" class="close" v-on:click="resetMessage" data-dismiss="alert" aria-label="close">&times;</a> {{successMessageReg}}
                                                     </p>
                                                 <form class="form" id="form" method="POST" v-on:submit="validateForm">
                     
