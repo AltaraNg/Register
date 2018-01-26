@@ -945,10 +945,23 @@ var app = new Vue({
                     app.errorMessage = '';
                 }, 2000);
             } else {
+                    app.submitted = true;
+                    var emp = app.Employee_id;
+                    
+                    if (!isNaN(emp.charAt(4))){
+                        emp.slice(4);
+                        emp.slice(0,-3)
+                    }
+                    else if ((!isNaN(emp.charAt(5))))  {
+                        emp.slice(5);
+                        emp.slice(0,-3)
+                    }
+                    else {
+                        
+                    }
 
-                app.submitted = true
                 var dat = {
-                    Employee_id: app.Employee_id,
+                    Employee_id: emp,
                     Access_code: app.Access_code
                 }
                 var formData = app.toFormData(dat);
@@ -967,7 +980,7 @@ var app = new Vue({
                         } else {
                             if (response.data.data.length != 0) {
 
-                                if (response.data.data[0].Employee_Role_id == 10 || response.data.data[0].Employee_Role_id == 8 || response.data.data[0].Employee_Role_id == 7) {
+                                if (response.data.data[0].Employee_Role_id == 11 || response.data.data[0].Employee_Role_id == 6 || response.data.data[0].Employee_Role_id == 1) {
                                     app.access_granted = true;
                                     app.successMessage = "Access Granted!, Enter Customer ID below";
 
