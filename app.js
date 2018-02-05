@@ -1036,7 +1036,7 @@ dsalogs:{
         },
 
         ListEmployees: function () {
-            axios.get("http://localhost/altaracredit/altara_api/api.php?action=listemp")
+            axios.get("https://altara-api.herokuapp.com/api.php?action=listemp")
                 .then(function (response) {
                     console.log(response);
                     if (response.data.error) {
@@ -1059,7 +1059,7 @@ dsalogs:{
             } else {
                 var formData = app.toFormData(app.dsalogs);
 
-            axios.post("http://localhost/altaracredit/altara_api/api.php?action=empreport", formData)
+            axios.post("https://altara-api.herokuapp.com/api.php?action=empreport", formData)
                 .then(function (response) {
                     console.log(response);
                     if (response.data.error) {
