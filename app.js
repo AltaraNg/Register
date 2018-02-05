@@ -7,12 +7,15 @@ const ERRORS = {
 var app = new Vue({
     el: '#root',
     data: {
+        errorMessageRegEm:'',
+        successMessageRegEm:'',
         dataloaded: false,
         Employee_id: '',
         Access_code: '',
         access_granted: false,
         search: '',
         list_customers: [],
+        list_employees:[],
         errorMessageChk: '',
         successMessageReg: '',
         errorMessageReg: '',
@@ -153,7 +156,15 @@ var app = new Vue({
             pguaarea: '',
             guaarea: '',
         },
-
+dsalogs:{
+    emp_id:'',
+    doc_sub:'',
+    store_visited:'',
+    cust_visited:'',
+    report:'',
+    cust_reg:'',
+    date:''
+},
         // CheckGuaData: [],
         // SelectedGuaData:{},
 
@@ -219,6 +230,7 @@ var app = new Vue({
     mounted: function () {
         console.log('mounted');
         this.ListCustomers();
+        this.ListEmployees();
     },
 
     computed: {
@@ -1018,8 +1030,48 @@ var app = new Vue({
                         app.errorMessage = response.data.message;
                     } else {
                         app.list_customers = response.data.users;
+                        console.log(app.list_customers);
                     }
                 });
+        },
+
+        ListEmployees: function () {
+            axios.get("http://localhost/altaracredit/altara_api/api.php?action=listemp")
+                .then(function (response) {
+                    console.log(response);
+                    if (response.data.error) {
+                        app.errorMessage = response.data.message;
+                    } else {
+                        app.list_employees = response.data.users;
+                        console.log(app.list_employees);
+                    }
+                });
+        },
+
+        EmployeesReport: function () {
+           
+            if (app.dsalogs.emp_id == '' || app.dsalogs.doc_sub == '' || app.dsalogs.date == '' || app.dsalogs.store_visited == '' || app.dsalogs.cust_visited == '' || app.dsalogs.cust_reg == '') {
+                app.errorMessageRegEm = "Field can't be empty";
+                setTimeout(function () {
+                    app.errorMessageRegEm = '';
+                }, 1000);
+
+            } else {
+                var formData = app.toFormData(app.dsalogs);
+
+            axios.post("http://localhost/altaracredit/altara_api/api.php?action=empreport", formData)
+                .then(function (response) {
+                    console.log(response);
+                    if (response.data.error) {
+                        app.errorMessageRegEm = response.data.message;
+                    } else {
+                        app.successMessageRegEm = response.data.message;
+                        setTimeout(function () {
+                            app.successMessageRegEm = '';
+                        }, 2000);
+                    }
+                });
+            }
         },
 
         checkCust: function () {

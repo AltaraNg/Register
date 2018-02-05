@@ -56,12 +56,12 @@
                                         </div>
 
                                         <div v-if="access_granted" class="row" style=" margin:10px;padding:10px;">
-                                            <div class="col-sm-4" style="margin:0 auto; margin-bottom:10px;">
+                                            <div class="col-sm-3" style="margin:0 auto; margin-bottom:10px;">
                                                 <div style="margin:0 auto; width:250px;"><img src="reg.png" width="40" height="40" />
                                                     <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-small" style="font-size:12px">Register Customer</button>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4" style="margin:0 auto; margin-bottom:10px;">
+                                            <div class="col-sm-3" style="margin:0 auto; margin-bottom:10px;">
                                                 <div style="margin:0 auto;width:250px;">
                                                     <img src="update.png" width="40" height="40" />
                     
@@ -69,9 +69,15 @@
                                                 </div>
                                             </div>
                     
-                                            <div class="col-sm-4" style="margin:0 auto; margin-bottom:10px;">
+                                            <div class="col-sm-3" style="margin:0 auto; margin-bottom:10px;">
                                                 <div style="margin:0 auto; width:250px;"><img src="reg.png" width="40" height="40" />
                                                     <button type="button" data-toggle="modal" data-target="#myModal3" class="btn btn-success btn-small" style="font-size:12px">Customer List</button>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3" style="margin:0 auto; margin-bottom:10px;">
+                                                <div style="margin:0 auto; width:250px;"><img src="reg.png" width="40" height="40" />
+                                                    <button type="button" data-toggle="modal" data-target="#myModal4" class="btn btn-success btn-small" style="font-size:12px">DSA logs</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1317,6 +1323,74 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div id="myModal4" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                    
+                                            <div class="panel-heading" style="background-color: #00264d;">
+                                                <h4 class="modal-title" style="color:white">Customer Search</h4>
+                                            </div>
+                    
+                                            <div class="panel-body">
+                                                <div class="clear"></div>
+                                            
+                                                <div class="loading" v-if='submitted'>Loading&#8230;</div>
+                                                <p class="alert alert-danger alert-dismissable" v-if='errorMessageRegEm'>
+                                                    <a href="#" class="close" v-on:click="resetMessage" data-dismiss="alert" aria-label="close">&times;</a> {{errorMessageRegEm}}
+                                                </p>
+                                                <p class="alert alert-success alert-dismissable" v-if='successMessageRegEm'>
+                                                    <a href="#" class="close" v-on:click="resetMessage" data-dismiss="alert" aria-label="close">&times;</a> {{successMessageRegEm}}
+                                                </p>
+                                                <div class=" form-group" style="margin:0 auto; width:400px;">
+                                                        <label>Date</label>
+                                                        <input type="date" placeholder="Enter Registration Date  Here.." v-model="dsalogs.date" class="form-control">
+                                                        
+                                                    </div>
+                                                <div class="row" style=" padding-right:10px;padding-left:10px;">
+                                                    <table class=" table table-bordered list">
+                                                        <tr>
+                                                            <th class="col-sm-3">Employee </th>
+                                                            <th class="col-sm-1" >Store Visited</th>
+                                                            <th class="col-sm-1" >Customers who submitted  complete document </th>
+                                                            <th class="col-sm-1" >Customers Registered</th>
+                                                            <th class="col-sm-1" >Customers who visited the showroom                  </th>
+                                                            <th class="col-sm-1" >Market Report feedback      </th>
+                                                        </tr>
+                                                        <tr>
+                                                             
+                                                            <td><select id="days" class="form-control " v-model="dsalogs.emp_id">
+                                                                <option value="">Select</option>
+                                                                <option v-for="employee in list_employees"
+                                                                :value="employee.Employee_id">{{ employee.Employee_id}} &nbsp;  {{employee.Employee_name}}
+                                                        </option>
+                                                            </select> </td>
+                                                            <td><input  class="form-control" type="number"
+                                                                placeholder=""  v-model="dsalogs.store_visited"  
+                                                                class="form-control"></td>
+                                                            <td><input  class="form-control" type="number"
+                                                                placeholder=""  v-model="dsalogs.doc_sub" 
+                                                                class="form-control"> </td>
+                                                            <td><input  class="form-control" type="number"
+                                                                placeholder=""v-model="dsalogs.cust_reg"  
+                                                                class="form-control"></td>
+                                                            <td><input  class="form-control" type="number"
+                                                                placeholder=""  v-model="dsalogs.cust_visited" 
+                                                                class="form-control"> </td>
+                                                            <td><textarea name="" id=""  v-model="dsalogs.report" cols="30" rows="5"></textarea></td>
+                                                            
+                                                        </tr>
+                                                      
+                            
+                                                    </table>
+                                                    <button type="button" @click="EmployeesReport" class="btn btn-success btn-small" style="display:block; font-size:12px;margin:0 auto;">Save</button> 
+                                                    <button type="button" @click="dsalogs.emp_id = '' ; app.dsalogs.doc_sub = '';  app.dsalogs.date = ''; dsalogs.store_visited = '';  dsalogs.cust_visited = '' ; dsalogs.cust_reg = ''; dsalogs.cust_reg = '';dsalogs.date;" class="btn btn-success btn-small" style="display:block; font-size:12px;margin:0 auto;">Reset</button>
+                                                </div>
+                    
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
 
         </div>
