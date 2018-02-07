@@ -1056,7 +1056,15 @@ dsalogs:{
                     app.errorMessageRegEm = '';
                 }, 1000);
 
-            } else {
+            } else if (  app.dsalogs.cust_reg  > app.dsalogs.store_visited  ) {
+                app.errorMessageRegEm = "Registered Customers Can't be More than Store Visited";
+                setTimeout(function () {
+                    app.errorMessageRegEm = '';
+                }, 1000);
+
+            } 
+            
+            else {
                 var formData = app.toFormData(app.dsalogs);
 
             axios.post("https://altara-api.herokuapp.com/api.php?action=empreport", formData)
@@ -1563,7 +1571,8 @@ dsalogs:{
         },
         sendNotification(name, telnumber) {
             telnumber = telnumber.substr(1);
-            let message = "Dear " + name + ", Welcome to Altara Credit Limited. You are required to bring the following documents. 1. Proof of ID, 2. Passport Photo (2), 3. Utility bill(Nepa, Not later than 3 months), 4. Six Months Bank Statement till date,  5. Gurantor's cheque.";
+           
+            let message = "Dear " + name + ", Welcome to Altara Credit Limited, You are hereby invited to our showroom at No. 60. Elewura Bus-Stop, Challenge, Ibadan, Opposite *Smile* to learn more about our offerings. Pick up electronics now and pay later. We look forward to seeing you.";
             axios.get("https://api.infobip.com/sms/1/text/query?username=Oluwatoke12&password=Altara99&to=" + 234 + telnumber + "&text=" + message + "")
                 .then(function (response2) {
                     console.log(response2);
