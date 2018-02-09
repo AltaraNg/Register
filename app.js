@@ -1056,7 +1056,10 @@ dsalogs:{
                     app.errorMessageRegEm = '';
                 }, 1000);
 
-            } else if (  app.dsalogs.cust_reg  > app.dsalogs.store_visited  ) {
+            } 
+          
+            else if (  Number(app.dsalogs.cust_reg )  > Number(app.dsalogs.store_visited)) {
+                
                 app.errorMessageRegEm = "Registered Customers Can't be More than Store Visited";
                 setTimeout(function () {
                     app.errorMessageRegEm = '';
