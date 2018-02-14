@@ -1304,6 +1304,7 @@
                                                     <table class=" table table-bordered list">
                                                         <tr>
                                                             <th>S/No.</th>
+                                                            <th>DSA name</th>
                                                             <th>Customer ID</th>
                                                             <th>Customer Name</th>
                                                             <th>Phone Number</th>
@@ -1311,6 +1312,7 @@
                                                         </tr>
                                                         <tr v-for="(list_customer , index) in filteredList_customers">
                                                             <td>{{index + 1}}</td>
+                                                            <td>{{list_customer.employee_name}}</td>
                                                             <td>{{list_customer.customer_id}}</td>
                                                             <td>{{list_customer.first_name }} {{list_customer.middle_name}} {{list_customer.last_name}}</td>
                                                             <td>{{list_customer.telephone}}</td>

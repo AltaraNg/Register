@@ -236,7 +236,7 @@ dsalogs:{
     computed: {
         filteredList_customers: function () {
             return this.list_customers.filter((list_customer) => {
-                return list_customer.first_name.match(this.search) + list_customer.last_name.match(this.search);
+                return list_customer.first_name.match(this.search) + list_customer.last_name.match(this.search) + list_customer.telephone.match(this.search);
             });
         },
 
@@ -1058,8 +1058,7 @@ dsalogs:{
 
             } 
           
-            else if (  Number(app.dsalogs.cust_reg )  > Number(app.dsalogs.store_visited)) {
-                
+            else if (  Number(app.dsalogs.cust_reg )  > Number(app.dsalogs.store_visited)) {      
                 app.errorMessageRegEm = "Registered Customers Can't be More than Store Visited";
                 setTimeout(function () {
                     app.errorMessageRegEm = '';
