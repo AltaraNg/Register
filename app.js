@@ -968,8 +968,7 @@ dsalogs:{
                         emp.slice(5);
                         emp.slice(0,-3)
                     }
-                    else {
-                        
+                    else {                       
                     }
 
                 var dat = {
@@ -988,14 +987,11 @@ dsalogs:{
                             setTimeout(function () {
                                 app.errorMessage = '';
                             }, 2000);
-
                         } else {
                             if (response.data.data.length != 0) {
-
                                 if (response.data.data[0].Employee_Role_id == 11 || response.data.data[0].Employee_Role_id == 6 || response.data.data[0].Employee_Role_id == 1) {
                                     app.access_granted = true;
                                     app.successMessage = "Access Granted!, Enter Customer ID below";
-
                                     setTimeout(function () {
                                         app.successMessage = '';
                                     }, 2000);
@@ -1007,16 +1003,12 @@ dsalogs:{
                                     }, 2000);
                                 }
                             }
-
                             else {
-
                                 app.errorMessage = "Access Denied, Wrong Login Details";
-
                                 setTimeout(function () {
                                     app.errorMessage = '';
                                 }, 2000);
                             }
-
                         }
                     });
             }
@@ -1129,8 +1121,6 @@ dsalogs:{
             }
         },
 
-
-
         isEmail(email) {
             const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(email)
@@ -1192,7 +1182,6 @@ dsalogs:{
             }
 
         },
-
 
         validateForm(event) {
            
@@ -1272,23 +1261,18 @@ dsalogs:{
                 event.preventDefault()
                 this.submition = true
                 app.errorMessageReg = 'All field must be filled!';
-
                 setTimeout(function () {
                     app.errorMessageReg = '';
-                }, 20000);
+                }, 2000);
 
 
             } else {
                 event.preventDefault()
                 this.submition = true
-                this.saveUser();
-                this.sendNotification(app.Newdata.fname, app.Newdata.telno);
-                console.log("Prepared for Db");
-                this.clearfeilds();
+                this.VerifyEntry();
                 app.submition = false;
             }
         },
-
 
         saveUpdate: function () {
             app.submitted = true;
@@ -1330,6 +1314,35 @@ dsalogs:{
                 });
 
         },
+
+        VerifyEntry:function(){
+                axios.post("https://altara-api.herokuapp.com/api.php?action=VerifyEntry", {
+                    tel: app.Newdata.telno
+                })
+                    .then(function (response) {
+                        console.log(response);
+                        if (response.data.error) {
+                            app.errorMessageReg = response.data.message;
+                            setTimeout(function () {
+                                app.errorMessageReg = 'Error!. Number cant be verified, Contact Support';
+                            }, 10000);
+                        } else {
+                            app.checKtel = response.data.checklist;
+                            if (app.checKtel.length == 0) {
+                                app.saveUser();
+                                this.sendNotification(app.Newdata.fname, app.Newdata.telno);
+                                console.log("Prepared for Db");
+                                app.clearfeilds();
+                            } else {
+                                app.clearfeilds();
+                                app.errorMessageReg = "Customer Already Exist";
+                                setTimeout(function () {
+                                    app.errorMessageReg = '';
+                                }, 10000);
+                            }
+                        }
+                    });
+            },
 
         saveUser: function () {
             app.dataloaded = true;
