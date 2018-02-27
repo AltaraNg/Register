@@ -1000,11 +1000,77 @@
                                                     </div>
                     
                                                 </div>
-                    
+                  
                                                 <div v-if="showGuaForm">
+
                                                     <form class="form" id="form" method="POST" v-on:submit="validateGuaForm">
-                                                        <div>Your about to update the Guarrantors information for <strong>{{CustName}} </strong> with Customer ID : <strong>{{CheckCusId}}</strong></div>
+                                                       
+                                                        <div>Your about to update the Customers information for <strong>{{CustName}} </strong> with Customer ID : <strong>{{CheckCusId}}</strong></div>
                                                         <hr>
+
+                                                        <h4><strong>Address</strong></h4>
+                                                        <label for="Address"> <input type="checkbox"  v-on:click="resetadd" v-model="AddressUpdate">Tick to Update Address information </label> {{AddressUpdate}}
+                                                        <div v-if="AddressUpdate">
+                                                            <hr>
+                                                        <h5><strong></strong></h5>
+                                                        <div class="row">
+                                                            <div class="form-group col-sm-3" v-bind:class="{ 'has-error': guasubmition && emptyupdstreetname }">
+                                                                <label>Street name</label>
+                                                                <input type="text" placeholder="Enter namee of street Here.." v-model="SelectedGuaData.updstreetname" class="form-control">
+                                                                <span class="help-block" v-if="guasubmition && emptyupdstreetname">This field is required</span>
+                                                            </div>
+                    
+                                                            <div class="form-group col-sm-2" v-bind:class="{ 'has-error': guasubmition && emptyupdhouseno }">
+                                                                <label>House number</label>
+                                                                <input type="text" placeholder="Enter house number Here.." v-model="SelectedGuaData.updhouseno" class="form-control">
+                                                                <span class="help-block" v-if="guasubmition && emptyupdhouseno">This field is required</span>
+                                                            </div>
+                    
+                                                            <div class="form-group col-sm-3" v-bind:class="{ 'has-error': guasubmition && emptyupdnearestBstop }">
+                                                                <label>Nearest Bus Stop</label>
+                                                                <input type="text" placeholder="Enter newrest Bus Stop Here.." v-model="SelectedGuaData.updnearestBstop" class="form-control">
+                                                                <span class="help-block" v-if="guasubmition && emptyupdnearestBstop">This field is required</span>
+                                                            </div>
+                                                            <div class="col-sm-4 form-group" v-bind:class="{ 'has-error': guasubmition && emptyupdtelno }">
+                                                                    <label>Telephone Number</label>
+                                                                    <input type="tel" placeholder="Enter Phone  Number Here.." v-model="SelectedGuaData.updtelno" class="form-control">
+                                                                    <span class="help-block" v-if="guasubmition && emptyupdtelno">{{TelFeedback}}</span>
+                                                                </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="form-group col-sm-3" v-bind:class="{ 'has-error': guasubmition && emptyupdaddarea }">
+                                                                <label>Area</label>
+                                                                <input type="text" placeholder="Enter your Area Here.." v-model="SelectedGuaData.updaddarea" class="form-control">
+                                                                <span class="help-block" v-if="guasubmition && emptyupdaddarea">This field is required</span>
+                                                            </div>
+                    
+                                                            <div class="form-group col-sm-5">
+                                                                <label>Describe Location</label>
+                                                                <textarea placeholder="Describe the Location.." rows="3" v-model="SelectedGuaData.updaddaddinfo" class="form-control"></textarea>
+                                                            </div>
+                                                            <div class="col-sm-2 form-group" v-bind:class="{ 'has-error': guasubmition && emptyupdcity }">
+                                                                <label>City</label>
+                                                                <input type="text" placeholder="Enter City Name Here.." v-model="SelectedGuaData.updcity" class="form-control">
+                                                                <span class="help-block" v-if="guasubmition && emptyupdcity">This field is required</span>
+                                                            </div>
+                    
+                                                            <div class="form-group col-sm-2">
+                                                                <div class="form-group" v-bind:class="{ 'has-error': guasubmition && emptyupdstate }">
+                                                                    <label for="days" class=" control-label">State</label>
+                                                                    <select id="days" class="form-control" v-model="SelectedGuaData.updstate">
+                                                            <option value="">Select</option>
+                                                            <option v-for="(State, $index) in StateOptions"
+                                                            :value="StateOptions[$index]">{{ State }}
+                                                    </option>
+                                                        </select>
+                                                                    <span class="help-block" v-if="guasubmition && emptyupdstate">This field is required</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+
+
                                                         <h4><strong>Work Guarantor</strong></h4>
                                                         <label for="Work Guarantor"> <input type="checkbox"  v-on:click="resetgua" v-model="Work_Guarantor">Tick to fill in Work Guarantors information </label> {{Work_Guarantor}}
                                                         <div v-if="Work_Guarantor">

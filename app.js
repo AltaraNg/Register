@@ -24,6 +24,7 @@ var app = new Vue({
         register: false,
         Personal_Guarantor: false,
         Work_Guarantor: false,
+        AddressUpdate:false,
         errorMessage: "",
         successMessage: "",
         Newdata: {
@@ -126,6 +127,16 @@ var app = new Vue({
         showGuaForm: false,
 
         SelectedGuaData: {
+
+            updcity: '',
+            updstate: '',
+            updtelno: '',
+            updnearestBstop: '',
+            updstreetname: '',
+            updhouseno: '',
+            updaddaddinfo: '',
+            updaddarea: '',
+
             custId: '',
             workguafname: '',
             workguamname: '',
@@ -287,7 +298,7 @@ dsalogs:{
 
         emptynokduraton() { return this.Newdata.nokduraton === '' },
 
-
+        
         emptyworkguafname() {
             if (this.Work_Guarantor == true && (this.Newdata.workguafname === '')) {
                 this.Feedback = ERRORS.required;
@@ -489,6 +500,65 @@ dsalogs:{
         //     }
         //     return false
         // },
+
+
+        emptyupdaddarea() {
+            
+                        if (this.AddressUpdate == true && (this.SelectedGuaData.updaddarea === '')) {
+                            this.Feedback = ERRORS.required;
+                            return true
+                        }
+                        return false
+                    },
+        emptyupdcity() {
+            
+                        if (this.AddressUpdate == true && (this.SelectedGuaData.updcity === '')) {
+                            this.Feedback = ERRORS.required;
+                            return true
+                        }
+                        return false
+                    },
+                    emptyupdnearestBstop() {
+            
+                        if (this.AddressUpdate == true && (this.SelectedGuaData.updnearestBstop === '')) {
+                            this.Feedback = ERRORS.required;
+                            return true
+                        }
+                        return false
+                    },
+                    emptyupdstreetname() {
+            
+                        if (this.AddressUpdate == true && (this.SelectedGuaData.updstreetname === '')) {
+                            this.Feedback = ERRORS.required;
+                            return true
+                        }
+                        return false
+                    },
+                    emptyupdhouseno() {
+            
+                        if (this.AddressUpdate == true && (this.SelectedGuaData.updhouseno === '')) {
+                            this.Feedback = ERRORS.required;
+                            return true
+                        }
+                        return false
+                    },
+                    emptyupdstate() {
+            
+                        if (this.AddressUpdate == true && (this.SelectedGuaData.updstate === '')) {
+                            this.Feedback = ERRORS.required;
+                            return true
+                        }
+                        return false
+                    },
+                    emptyupdtelno() {
+                        if (this.AddressUpdate == true && (this.SelectedGuaData.updtelno == '' || !this.isCorrectTel(this.SelectedGuaData.updtelno))) {
+                            this.TelFeedback = ERRORS.invalidTel
+                            return true
+                        }
+                        return false
+            
+                    },
+
 
         Gemptyworkgualname() {
 
@@ -1132,7 +1202,7 @@ dsalogs:{
 
         validateGuaForm(event) {
             console.log(app.Personal_Guarantor + app.Work_Guarantor)
-            if (app.Personal_Guarantor == false && app.Work_Guarantor == false) {
+            if (app.Personal_Guarantor == false && app.Work_Guarantor == false && app.AddressUpdate == false) {
                 event.preventDefault()
                 this.guasubmition = true
                 app.errorMessageChk = 'Noting to Update';
@@ -1140,6 +1210,14 @@ dsalogs:{
                     app.errorMessageChk = '';
                 }, 2000);
             } else if (
+                this.emptyupdcity  ||
+                this.emptyupdstate  ||
+                this.emptyupdtelno  ||
+                this.emptyupdnearestBstop  ||
+                this.emptyupdstreetname  ||
+                this.emptyupdhouseno  ||
+                this.emptyupdaddarea  ||
+
                 this.Gemptyworkguafname ||
                 this.Gemptyworkgualname ||
                 this.Gemptyguareladship ||
@@ -1281,6 +1359,11 @@ dsalogs:{
             } else {
                 app.SelectedGuaData.work_g = 1;
             }
+            if (app.AddressUpdate == false) {
+                app.SelectedGuaData.UpdAddTel = 0;
+            } else {
+                app.SelectedGuaData.UpdAddTel = 1;
+            }
             if (app.Personal_Guarantor == false) {
                 app.SelectedGuaData.personal_g = 0
             } else {
@@ -1388,6 +1471,19 @@ dsalogs:{
                 this.SelectedGuaData.guahouseno = '',
                 this.SelectedGuaData.guaaddaddinfo = '',
                 this.SelectedGuaData.guaarea = ''
+        },
+
+
+
+        resetadd: function (event) {
+                this.SelectedGuaData.updcity = '',
+                this.SelectedGuaData.updstate = '',
+                this.SelectedGuaData.updtelno = '',
+                this.SelectedGuaData.updnearestBstop = '',
+                this.SelectedGuaData.updstreetname = '',
+                this.SelectedGuaData.updhouseno = '',
+                this.SelectedGuaData.updaddaddinfo = '',
+                this.SelectedGuaData.updaddarea = ''
         },
 
         resetpgua: function (event) {
