@@ -59,7 +59,6 @@ var app = new Vue({
             ccity: '',
             cname: '',
             cposition: '',
-            mincome: '',
             bincome: '',
             checkedDofWork: [],
             DofWork: '',
@@ -838,14 +837,6 @@ dsalogs:{
             return false
         },
 
-        emptymincome() {
-            if (this.Newdata.mincome === '' && ((this.Newdata.cbelong === 'Housewife' && this.Newdata.hwork === 'Yes') || this.Newdata.work != '')) {
-                this.worksellFeedback = ERRORS.required;
-                return true
-            }
-            return false
-        },
-
 
         emptyctelNo() {
             if ((this.Newdata.ctelNo == '' || !this.isCorrectTel(this.Newdata.ctelNo)) && (this.Newdata.empstatus === 'Salaried' || this.Newdata.empstatus === 'Non-Salaried')) {
@@ -1613,7 +1604,6 @@ dsalogs:{
                 ccity: '',
                 cname: '',
                 cposition: '',
-                mincome: '',
                 bincome: '',
                 checkedDofWork: [],
                 DofWork: '',
@@ -1688,7 +1678,7 @@ dsalogs:{
                 .then(function (response2) {
                     console.log(response2);
                     if (response2.status == 200) {
-                        updateRemark(Updata)
+                        app.successMessage = "Notification Sent";
                     } else {
                         app.errorMessage = "Error Sending Message, Contact Support";
                     }
