@@ -1263,7 +1263,7 @@ dsalogs:{
                 }
                 i++;
             }
-
+            
             console.log(this.checkbizdetails);
             console.log(app.Newdata);
 
@@ -1404,7 +1404,7 @@ dsalogs:{
                             app.checKtel = response.data.checklist;
                             if (app.checKtel.length == 0) {
                                 app.saveUser();
-                                this.sendNotification(app.Newdata.fname, app.Newdata.telno);
+                                app.sendNotification(app.Newdata.fname, app.Newdata.telno);
                                 console.log("Prepared for Db");
                                 app.clearfeilds();
                             } else {
