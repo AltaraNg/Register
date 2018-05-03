@@ -1111,13 +1111,13 @@ dsalogs:{
 
             } 
           
-            else if (  Number(app.dsalogs.cust_reg )  > Number(app.dsalogs.store_visited)) {      
-                app.errorMessageRegEm = "Registered Customers Can't be More than Store Visited";
-                setTimeout(function () {
-                    app.errorMessageRegEm = '';
-                }, 1000);
+            // else if (  Number(app.dsalogs.cust_reg )  > Number(app.dsalogs.store_visited)) {      
+            //     app.errorMessageRegEm = "Registered Customers Can't be More than Store Visited";
+            //     setTimeout(function () {
+            //         app.errorMessageRegEm = '';
+            //     }, 1000);
 
-            } 
+            // } 
             
             else {
                 var formData = app.toFormData(app.dsalogs);
@@ -1132,6 +1132,8 @@ dsalogs:{
                         setTimeout(function () {
                             app.successMessageRegEm = '';
                         }, 2000);
+
+                        app.dsalogs.emp_id = '' ; app.dsalogs.doc_sub = ''; app.dsalogs.report=''; app.dsalogs.date = ''; app.dsalogs.store_visited = '';  app.dsalogs.cust_visited = '' ; app.dsalogs.cust_reg = '';
                     }
                 });
             }
