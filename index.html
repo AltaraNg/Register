@@ -109,20 +109,32 @@
                                                         <div class="row">
                                                             <h4><strong>Employee Details</strong></h4>
                                                             <hr>
-                                                            <div class="col-sm-4 form-group" v-bind:class="{ 'has-error': submition && emptyEmpname }">
+                                                            <div class="col-sm-3 form-group" v-bind:class="{ 'has-error': submition && emptyEmpname }">
                                                                 <label for="fname">Employee Name</label>
                                                                 <input name="fname" class="form-control" type="text" placeholder="Enter Employee Name Here.." v-model="Newdata.Empname" class="form-control">
                                                                 <span class="help-block" v-if="submition && emptyEmpname">This field is required</span>
                                                             </div>
-                                                            <div class="col-sm-4 form-group" v-bind:class="{ 'has-error': submition && emptyEmpnumber }">
+                                                            <div class="col-sm-3 form-group" v-bind:class="{ 'has-error': submition && emptyEmpnumber }">
                                                                 <label>Employee Number</label>
                                                                 <input type="text" class="form-control" placeholder="Enter Employee Number Here.." v-model="Newdata.Empnumber" class="form-control">
                                                                 <span class="help-block" v-if="submition && emptyEmpnumber">This field is required</span>
                                                             </div>
-                                                            <div class="col-sm-4 form-group" v-bind:class="{ 'has-error': submition && emptyRegdate }">
+                                                            <div class="col-sm-3 form-group" v-bind:class="{ 'has-error': submition && emptyRegdate }">
                                                                 <label>Date</label>
                                                                 <input type="date" placeholder="Enter Registration Date  Here.." v-model="Newdata.Regdate" class="form-control">
                                                                 <span class="help-block" v-if="submition && emptyRegdate">This field is required</span>
+                                                            </div>
+
+                                                            <div class="col-sm-3 form-group" v-bind:class="{ 'has-error': submition && emptyBranch }">
+                                                                <label>Branch</label>
+                                                                <select  class="form-control" v-model="Newdata.Branch">
+                                                                    <option value="">Select Branch</option>
+                                                                    <option v-for="(Branchn, $index) in Branchname"
+                                                                    :value="Branchname[$index]">{{ Branchn }}
+                                                            </option>
+                                                                </select>
+                                                                
+                                                                <span class="help-block" v-if="submition && emptyBranch">This field is required</span>
                                                             </div>
                     
                                                         </div>
@@ -1452,7 +1464,7 @@
                             
                                                     </table>
                                                     <button type="button" @click="EmployeesReport" class="btn btn-success btn-small" style="display:block; font-size:12px;margin:0 auto;">Save</button> 
-                                                    <button type="button" @click="dsalogs.emp_id = '' ;dsalogs.report=''; dsalogs.doc_sub = '';  dsalogs.date = ''; dsalogs.store_visited = '';  dsalogs.cust_visited = '' ; dsalogs.cust_reg = '';" class="btn btn-success btn-small" style="display:block; font-size:12px;margin:0 auto;">Reset</button>
+                                                    <button type="button" @click="dsalogs.emp_id = ''; dsalogs.report = ''; dsalogs.doc_sub = '';  dsalogs.date = ''; dsalogs.store_visited = '';  dsalogs.cust_visited = '' ; dsalogs.cust_reg = '';" class="btn btn-success btn-small" style="display:block; font-size:12px;margin:0 auto;">Reset</button>
                                                 </div>
                     
                                         </div>

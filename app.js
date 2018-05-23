@@ -110,6 +110,7 @@ var app = new Vue({
             Empname: '',
             Empnumber: '',
             Regdate: '',
+            Branch:'',
             addarea: '',
             norooms: '',
             empstatus: '',
@@ -196,6 +197,11 @@ dsalogs:{
             "Friday"
         ],
 
+        Branchname: [
+            "Challenge",
+            "Dugbe"
+        ],
+
         StateOptions: [
             "Abia",
             "Adamawa",
@@ -253,6 +259,7 @@ dsalogs:{
         emptyEmpname() { return this.Newdata.Empname === '' },
         emptyEmpnumber() { return this.Newdata.Empnumber === '' },
         emptyRegdate() { return this.Newdata.Regdate === '' },
+        emptyBranch() { return this.Newdata.Branch === '' },
         emptyaddarea() { return this.Newdata.addarea === '' },
         emptyempstatus() { return this.Newdata.empstatus === '' },
 
@@ -1325,6 +1332,7 @@ dsalogs:{
                 this.emptyEmpname ||
                 this.emptyEmpnumber ||
                 this.emptyRegdate ||
+                this.emptyBranch ||
                 this.emptyaddarea ||
                 this.checkbizdetails ||
                 this.checksaldetails
@@ -1425,6 +1433,7 @@ dsalogs:{
             var formData = app.toFormData(app.Newdata);
 
             axios.post("https://altara-api.herokuapp.com/api.php?action=create", formData)
+            // axios.post("http://localhost/AltaraCredit/altara_api/api.php?action=create", formData)
                 .then(function (response) {
                     console.log(response);
 
@@ -1657,6 +1666,7 @@ dsalogs:{
                 Empname: '',
                 Empnumber: '',
                 Regdate: '',
+                Branch:'',
                 addarea: '',
                 norooms: '',
                 empstatus: '',
