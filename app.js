@@ -1693,7 +1693,7 @@ dsalogs:{
           if (branch = 'Dugbe'){ address = 'Shop 119 Ayorinde Akintola, Adamasingba Complex, Adamasingba, Ibadan '; contactno = '08051932680';}
             if (branch = 'Agodi-Gate'){ address = 'Shop B42/B43 NTA Shopping Plaza, Agodi gate, Ibadan '; contactno = '08115103079';}
           if (branch = 'Iwo-Road'){ address = 'Suite 5,6,7,8, Praize Plaza, beside Toun Specialist hospital, New Ife Road, Ibadan'; contactno = '08115101751';}
-          if (branch = 'Bodija'){ address = 'Suite B3 Albarka Shopping Complex Bodija'; contactno = '08115103525';}
+          if (branch = 'Bodija'){ address = 'Suite B3, Albarka Shopping Complex, Bodija'; contactno = '08115103525';}
           
             let message = "Dear " + name + ", Welcome to Altara Credit Limited, You are hereby invited to our showroom at " +  address  + " to learn more about our offerings. Pick up products now and pay later. We look forward to seeing you. For more info contact : " + contactno ;
             axios.get("https://api.infobip.com/sms/1/text/query?username=Oluwatoke12&password=Altara99&to=" + 234 + telnumber + "&text=" + message + "")
