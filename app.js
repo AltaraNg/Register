@@ -1375,7 +1375,7 @@ dsalogs:{
             }
 
             app.SelectedGuaData.custId = app.CheckCusId;
-            console.log(app.SelectedGuaData);
+            console.log(app.SelectedGuaData.UpdAddTel);
             var formData = app.toFormData(app.SelectedGuaData);
 
             axios.post("https://altara-api.herokuapp.com/api.php?action=update", formData)
@@ -1478,8 +1478,15 @@ dsalogs:{
                 this.SelectedGuaData.guaarea = ''
         },
 
-
-
+resetGuaform:function(){
+    app.showGuaForm = false;
+    app.resetadd(); 
+    app.resetgua();
+    app.resetpgua();
+    app.Personal_Guarantor = false,
+    app.Work_Guarantor = false,
+    app.AddressUpdate = false
+},
         resetadd: function (event) {
                 this.SelectedGuaData.updcity = '',
                 this.SelectedGuaData.updstate = '',
