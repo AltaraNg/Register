@@ -1375,7 +1375,7 @@ dsalogs:{
             }
 
             app.SelectedGuaData.custId = app.CheckCusId;
-            console.log(app.SelectedGuaData.UpdAddTel);
+            console.log(app.SelectedGuaData);
             var formData = app.toFormData(app.SelectedGuaData);
 
             axios.post("https://altara-api.herokuapp.com/api.php?action=update", formData)
@@ -1696,11 +1696,11 @@ resetGuaform:function(){
             telnumber = telnumber.substr(1);
             var address;
             var contactno ;
-           if (branch = 'Challenge'){ address = 'No. 60, Elewura Bus-Stop, Laramax Plaza(1st floor), Challenge, Ibadan, Opposite *Smile*'; contactno = '08150479429';}
-          if (branch = 'Dugbe'){ address = 'Shop 119 Ayorinde Akintola, Adamasingba Complex, Adamasingba, Ibadan '; contactno = '08051932680';}
-            if (branch = 'Agodi-Gate'){ address = 'Shop B42/B43 NTA Shopping Plaza, Agodi gate, Ibadan '; contactno = '08115103079';}
-          if (branch = 'Iwo-Road'){ address = 'Suite 5,6,7,8, Praize Plaza, beside Toun Specialist hospital, New Ife Road, Ibadan'; contactno = '08115101751';}
-          if (branch = 'Bodija'){ address = 'Suite B3, Albarka Shopping Complex, Bodija'; contactno = '08115103525';}
+           if (branch == 'Challenge'){ address = 'No. 60, Elewura Bus-Stop, Laramax Plaza(1st floor), Challenge, Ibadan, Opposite *Smile*'; contactno = '08150479429';}
+          if (branch == 'Dugbe'){ address = 'Shop 119 Ayorinde Akintola, Adamasingba Complex, Adamasingba, Ibadan '; contactno = '08051932680';}
+            if (branch == 'Agodi-Gate'){ address = 'Shop B42/B43 NTA Shopping Plaza, Agodi gate, Ibadan '; contactno = '08115103079';}
+          if (branch == 'Iwo-Road'){ address = 'Suite 5,6,7,8, Praize Plaza, beside Toun Specialist hospital, New Ife Road, Ibadan'; contactno = '08115101751';}
+          if (branch == 'Bodija'){ address = 'Suite B3, Albarka Shopping Complex, Bodija'; contactno = '08115103525';}
           
             let message = "Dear " + name + ", Welcome to Altara Credit Limited, You are hereby invited to our showroom at " +  address  + " to learn more about our offerings. Pick up products now and pay later. We look forward to seeing you. For more info contact : " + contactno ;
             axios.get("https://api.infobip.com/sms/1/text/query?username=Oluwatoke12&password=Altara99&to=" + 234 + telnumber + "&text=" + message + "")
