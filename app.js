@@ -7,15 +7,15 @@ const ERRORS = {
 var app = new Vue({
     el: '#root',
     data: {
-        errorMessageRegEm:'',
-        successMessageRegEm:'',
+        errorMessageRegEm: '',
+        successMessageRegEm: '',
         dataloaded: false,
         Employee_id: '',
         Access_code: '',
         access_granted: false,
         search: '',
         list_customers: [],
-        list_employees:[],
+        list_employees: [],
         errorMessageChk: '',
         successMessageReg: '',
         errorMessageReg: '',
@@ -24,7 +24,7 @@ var app = new Vue({
         register: false,
         Personal_Guarantor: false,
         Work_Guarantor: false,
-        AddressUpdate:false,
+        AddressUpdate: false,
         errorMessage: "",
         successMessage: "",
         Newdata: {
@@ -110,7 +110,7 @@ var app = new Vue({
             Empname: '',
             Empnumber: '',
             Regdate: '',
-            Branch:'',
+            Branch: '',
             addarea: '',
             norooms: '',
             empstatus: '',
@@ -167,15 +167,15 @@ var app = new Vue({
             pguaarea: '',
             guaarea: '',
         },
-dsalogs:{
-    emp_id:'',
-    doc_sub:'',
-    store_visited:'',
-    cust_visited:'',
-    report:'',
-    cust_reg:'',
-    date:''
-},
+        dsalogs: {
+            emp_id: '',
+            doc_sub: '',
+            store_visited: '',
+            cust_visited: '',
+            report: '',
+            cust_reg: '',
+            date: ''
+        },
         // CheckGuaData: [],
         // SelectedGuaData:{},
 
@@ -307,7 +307,7 @@ dsalogs:{
 
         emptynokduraton() { return this.Newdata.nokduraton === '' },
 
-        
+
         emptyworkguafname() {
             if (this.Work_Guarantor == true && (this.Newdata.workguafname === '')) {
                 this.Feedback = ERRORS.required;
@@ -512,61 +512,61 @@ dsalogs:{
 
 
         emptyupdaddarea() {
-            
-                        if (this.AddressUpdate == true && (this.SelectedGuaData.updaddarea === '')) {
-                            this.Feedback = ERRORS.required;
-                            return true
-                        }
-                        return false
-                    },
+
+            if (this.AddressUpdate == true && (this.SelectedGuaData.updaddarea === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
         emptyupdcity() {
-            
-                        if (this.AddressUpdate == true && (this.SelectedGuaData.updcity === '')) {
-                            this.Feedback = ERRORS.required;
-                            return true
-                        }
-                        return false
-                    },
-                    emptyupdnearestBstop() {
-            
-                        if (this.AddressUpdate == true && (this.SelectedGuaData.updnearestBstop === '')) {
-                            this.Feedback = ERRORS.required;
-                            return true
-                        }
-                        return false
-                    },
-                    emptyupdstreetname() {
-            
-                        if (this.AddressUpdate == true && (this.SelectedGuaData.updstreetname === '')) {
-                            this.Feedback = ERRORS.required;
-                            return true
-                        }
-                        return false
-                    },
-                    emptyupdhouseno() {
-            
-                        if (this.AddressUpdate == true && (this.SelectedGuaData.updhouseno === '')) {
-                            this.Feedback = ERRORS.required;
-                            return true
-                        }
-                        return false
-                    },
-                    emptyupdstate() {
-            
-                        if (this.AddressUpdate == true && (this.SelectedGuaData.updstate === '')) {
-                            this.Feedback = ERRORS.required;
-                            return true
-                        }
-                        return false
-                    },
-                    emptyupdtelno() {
-                        if (this.AddressUpdate == true && (this.SelectedGuaData.updtelno == '' || !this.isCorrectTel(this.SelectedGuaData.updtelno))) {
-                            this.TelFeedback = ERRORS.invalidTel
-                            return true
-                        }
-                        return false
-            
-                    },
+
+            if (this.AddressUpdate == true && (this.SelectedGuaData.updcity === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        emptyupdnearestBstop() {
+
+            if (this.AddressUpdate == true && (this.SelectedGuaData.updnearestBstop === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        emptyupdstreetname() {
+
+            if (this.AddressUpdate == true && (this.SelectedGuaData.updstreetname === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        emptyupdhouseno() {
+
+            if (this.AddressUpdate == true && (this.SelectedGuaData.updhouseno === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        emptyupdstate() {
+
+            if (this.AddressUpdate == true && (this.SelectedGuaData.updstate === '')) {
+                this.Feedback = ERRORS.required;
+                return true
+            }
+            return false
+        },
+        emptyupdtelno() {
+            if (this.AddressUpdate == true && (this.SelectedGuaData.updtelno == '' || !this.isCorrectTel(this.SelectedGuaData.updtelno))) {
+                this.TelFeedback = ERRORS.invalidTel
+                return true
+            }
+            return false
+
+        },
 
 
         Gemptyworkgualname() {
@@ -1028,19 +1028,19 @@ dsalogs:{
                     app.errorMessage = '';
                 }, 2000);
             } else {
-                    app.submitted = true;
-                    var emp = app.Employee_id;
-                    
-                    if (!isNaN(emp.charAt(4))){
-                        emp.slice(4);
-                        emp.slice(0,-3)
-                    }
-                    else if ((!isNaN(emp.charAt(5))))  {
-                        emp.slice(5);
-                        emp.slice(0,-3)
-                    }
-                    else {                       
-                    }
+                app.submitted = true;
+                var emp = app.Employee_id;
+
+                if (!isNaN(emp.charAt(4))) {
+                    emp.slice(4);
+                    emp.slice(0, -3)
+                }
+                else if ((!isNaN(emp.charAt(5)))) {
+                    emp.slice(5);
+                    emp.slice(0, -3)
+                }
+                else {
+                }
 
                 var dat = {
                     Employee_id: emp,
@@ -1112,15 +1112,15 @@ dsalogs:{
         },
 
         EmployeesReport: function () {
-           
+
             if (app.dsalogs.emp_id == '' || app.dsalogs.doc_sub == '' || app.dsalogs.date == '' || app.dsalogs.store_visited == '' || app.dsalogs.cust_visited == '' || app.dsalogs.cust_reg == '') {
                 app.errorMessageRegEm = "Field can't be empty";
                 setTimeout(function () {
                     app.errorMessageRegEm = '';
                 }, 1000);
 
-            } 
-          
+            }
+
             // else if (  Number(app.dsalogs.cust_reg )  > Number(app.dsalogs.store_visited)) {      
             //     app.errorMessageRegEm = "Registered Customers Can't be More than Store Visited";
             //     setTimeout(function () {
@@ -1128,24 +1128,24 @@ dsalogs:{
             //     }, 1000);
 
             // } 
-            
+
             else {
                 var formData = app.toFormData(app.dsalogs);
 
-            axios.post("https://altara-api.herokuapp.com/api.php?action=empreport", formData)
-                .then(function (response) {
-                    console.log(response);
-                    if (response.data.error) {
-                        app.errorMessageRegEm = response.data.message;
-                    } else {
-                        app.successMessageRegEm = response.data.message;
-                        setTimeout(function () {
-                            app.successMessageRegEm = '';
-                        }, 2000);
+                axios.post("https://altara-api.herokuapp.com/api.php?action=empreport", formData)
+                    .then(function (response) {
+                        console.log(response);
+                        if (response.data.error) {
+                            app.errorMessageRegEm = response.data.message;
+                        } else {
+                            app.successMessageRegEm = response.data.message;
+                            setTimeout(function () {
+                                app.successMessageRegEm = '';
+                            }, 2000);
 
-                        app.dsalogs.emp_id = '' ; app.dsalogs.doc_sub = ''; app.dsalogs.report=''; app.dsalogs.date = ''; app.dsalogs.store_visited = '';  app.dsalogs.cust_visited = '' ; app.dsalogs.cust_reg = '';
-                    }
-                });
+                            app.dsalogs.emp_id = ''; app.dsalogs.doc_sub = ''; app.dsalogs.report = ''; app.dsalogs.date = ''; app.dsalogs.store_visited = ''; app.dsalogs.cust_visited = ''; app.dsalogs.cust_reg = '';
+                        }
+                    });
             }
         },
 
@@ -1174,11 +1174,59 @@ dsalogs:{
                             app.checKiD = response.data.checklist;
                             if (app.checKiD.length != 0) {
                                 app.showGuaForm = true;
+                                app.Personal_Guarantor = true ;
+                                 app.Work_Guarantor = true ;
+                                  app.AddressUpdate = true;
                                 // app.SelectedGuaData = app.checKiD;
                                 // console.log(app.SelectedGuaData);
 
-                                app.CustName = response.data.checklist[0].first_name + " " + response.data.checklist[0].last_name
+                                app.CustName = response.data.checklist[0].first_name + " " + response.data.checklist[0].last_name;
                                 // app.phoneNo = response.data.checklist[0].telephone
+
+                                app.SelectedGuaData.workguafname = response.data.checklist[0].work_guarantor_first_name;
+                                console.log(app.SelectedGuaData.workguafname);
+                                console.log(response.data.checklist[0].work_guarantor_first_name);
+                                
+                                app.SelectedGuaData.workguamname = response.data.checklist[0].work_guarantor_middle_name;
+                                app.SelectedGuaData.workgualname = response.data.checklist[0].work_guarantor_last_name;
+                                app.SelectedGuaData.guareladship = response.data.checklist[0].work_guarantor_relationship;
+                                app.SelectedGuaData.guaworkduraton = response.data.checklist[0].work_guarantor_work_duration;
+                                app.SelectedGuaData.guagender = response.data.checklist[0].work_guarantor_gender;
+                                app.SelectedGuaData.guacity = response.data.checklist[0].work_guarantor_city;
+                                app.SelectedGuaData.guastate = response.data.checklist[0].work_guarantor_state;
+                                app.SelectedGuaData.guatelno = response.data.checklist[0].work_guarantor_telno;
+                                app.SelectedGuaData.guanearestBstop = response.data.checklist[0].guaadd_nbstop;
+                                app.SelectedGuaData.guastreetname = response.data.checklist[0].guaadd_street;
+                                app.SelectedGuaData.guahouseno = response.data.checklist[0].guaadd_houseno;
+                                app.SelectedGuaData.guaaddaddinfo = response.data.checklist[0].guaadd_addinfo;
+                                app.SelectedGuaData.guaarea = response.data.checklist[0].gua_area;
+                       
+                                app.SelectedGuaData.updcity = response.data.checklist[0].city;
+                                app.SelectedGuaData.updstate = response.data.checklist[0].state;
+                                app.SelectedGuaData.updtelno = response.data.checklist[0].telephone;
+                                app.SelectedGuaData.updnearestBstop = response.data.checklist[0].add_nbstop;
+                                app.SelectedGuaData.updstreetname = response.data.checklist[0].add_street;
+                                app.SelectedGuaData.updhouseno = response.data.checklist[0].add_houseno;
+                                app.SelectedGuaData.updaddaddinfo = response.data.checklist[0].add_addinfo_description;
+                                app.SelectedGuaData.updaddarea = response.data.checklist[0].area_address;
+                       
+                                app.SelectedGuaData.pguafname = response.data.checklist[0].personal_guarantor_first_name;
+                                app.SelectedGuaData.pguamname = response.data.checklist[0].personal_guarantor_middle_name;
+                                app.SelectedGuaData.pgualname = response.data.checklist[0].personal_guarantor_last_name;
+                                app.SelectedGuaData.pguareladship = response.data.checklist[0].personal_guarantor_relationship;
+                                app.SelectedGuaData.pguaworkduraton = response.data.checklist[0].personal_guarantor_work_duration;
+                                app.SelectedGuaData.pguagender = response.data.checklist[0].personal_guarantor_gender;
+                                app.SelectedGuaData.pguacity = response.data.checklist[0].personal_guarantor_city;
+                                app.SelectedGuaData.pguastate = response.data.checklist[0].personal_guarantor_state;
+                                app.SelectedGuaData.pguatelno = response.data.checklist[0].personal_guarantor_telno;
+                                app.SelectedGuaData.pguanearestBstop = response.data.checklist[0].pguaadd_nbstop;
+                                app.SelectedGuaData.pguastreetname = response.data.checklist[0].pguaadd_street;
+                                app.SelectedGuaData.pguahouseno = response.data.checklist[0].pguaadd_houseno;
+                                app.SelectedGuaData.pguaaddaddinfo = response.data.checklist[0].pguaadd_addinfo;
+                                app.SelectedGuaData.pguaarea = response.data.checklist[0].pgua_area;
+
+
+                                
                             } else {
                                 app.errorMessageChk = "Customer ID doesnt exist!";
 
@@ -1213,13 +1261,13 @@ dsalogs:{
                     app.errorMessageChk = '';
                 }, 2000);
             } else if (
-                this.emptyupdcity  ||
-                this.emptyupdstate  ||
-                this.emptyupdtelno  ||
-                this.emptyupdnearestBstop  ||
-                this.emptyupdstreetname  ||
-                this.emptyupdhouseno  ||
-                this.emptyupdaddarea  ||
+                this.emptyupdcity ||
+                this.emptyupdstate ||
+                this.emptyupdtelno ||
+                this.emptyupdnearestBstop ||
+                this.emptyupdstreetname ||
+                this.emptyupdhouseno ||
+                this.emptyupdaddarea ||
 
                 this.Gemptyworkguafname ||
                 this.Gemptyworkgualname ||
@@ -1233,6 +1281,7 @@ dsalogs:{
                 this.Gemptyguastate ||
                 this.Gemptyguatelno ||
                 this.Gemptyguaarea ||
+
                 this.Gemptypguafname ||
                 this.Gemptypgualname ||
                 this.Gemptypguareladship ||
@@ -1265,7 +1314,7 @@ dsalogs:{
         },
 
         validateForm(event) {
-           
+
             var i = 0;
             while (i <= (app.Newdata.checkedDofWork).length - 1) {
                 if ((app.Newdata.checkedDofWork).length - 1 === i) {
@@ -1275,11 +1324,11 @@ dsalogs:{
                 }
                 i++;
             }
-            
+
             console.log(this.checkbizdetails);
             console.log(app.Newdata);
 
-            if ( 
+            if (
                 this.emptyfname ||
                 this.emptylname ||
                 this.emptynearestBstop ||
@@ -1351,7 +1400,7 @@ dsalogs:{
             } else {
                 event.preventDefault()
                 this.submition = true
-               this.VerifyEntry();
+                this.VerifyEntry();
                 app.submition = false;
             }
         },
@@ -1402,41 +1451,41 @@ dsalogs:{
 
         },
 
-        VerifyEntry:function(){
-                axios.post("https://altara-api.herokuapp.com/api.php?action=VerifyEntry", {
-                    tel: app.Newdata.telno
-                })
-                    .then(function (response) {
-                        console.log(response);
-                        if (response.data.error) {
-                            app.errorMessageReg = response.data.message;
-                            setTimeout(function () {
-                                app.errorMessageReg = 'Error!. Number cant be verified, Contact Support';
-                            }, 10000);
+        VerifyEntry: function () {
+            axios.post("https://altara-api.herokuapp.com/api.php?action=VerifyEntry", {
+                tel: app.Newdata.telno
+            })
+                .then(function (response) {
+                    console.log(response);
+                    if (response.data.error) {
+                        app.errorMessageReg = response.data.message;
+                        setTimeout(function () {
+                            app.errorMessageReg = 'Error!. Number cant be verified, Contact Support';
+                        }, 10000);
+                    } else {
+                        app.checKtel = response.data.checklist;
+                        if (app.checKtel.length == 0) {
+                            app.saveUser();
+                            app.sendNotification(app.Newdata.fname, app.Newdata.telno, app.Newdata.Branch);
+                            console.log("Prepared for Db");
+                            app.clearfeilds();
                         } else {
-                            app.checKtel = response.data.checklist;
-                            if (app.checKtel.length == 0) {
-                               app.saveUser();
-                                app.sendNotification(app.Newdata.fname, app.Newdata.telno, app.Newdata.Branch);
-                                console.log("Prepared for Db");
-                                app.clearfeilds();
-                            } else {
-                                app.clearfeilds();
-                                app.errorMessageReg = "Customer Already Exist";
-                                setTimeout(function () {
-                                    app.errorMessageReg = '';
-                                }, 10000);
-                            }
+                            app.clearfeilds();
+                            app.errorMessageReg = "Customer Already Exist";
+                            setTimeout(function () {
+                                app.errorMessageReg = '';
+                            }, 10000);
                         }
-                    });
-            },
+                    }
+                });
+        },
 
         saveUser: function () {
             app.dataloaded = true;
             var formData = app.toFormData(app.Newdata);
 
             axios.post("https://altara-api.herokuapp.com/api.php?action=create", formData)
-            // axios.post("http://localhost/AltaraCredit/altara_api/api.php?action=create", formData)
+                // axios.post("http://localhost/AltaraCredit/altara_api/api.php?action=create", formData)
                 .then(function (response) {
                     console.log(response);
 
@@ -1462,58 +1511,58 @@ dsalogs:{
 
         },
         resetgua: function (event) {
-            this.SelectedGuaData.workguafname = '',
-                this.SelectedGuaData.workguamname = '',
-                this.SelectedGuaData.workgualname = '',
-                this.SelectedGuaData.guareladship = '',
-                this.SelectedGuaData.guaworkduraton = '',
-                this.SelectedGuaData.guagender = '',
-                this.SelectedGuaData.guacity = '',
-                this.SelectedGuaData.guastate = '',
-                this.SelectedGuaData.guatelno = '',
-                this.SelectedGuaData.guanearestBstop = '',
-                this.SelectedGuaData.guastreetname = '',
-                this.SelectedGuaData.guahouseno = '',
-                this.SelectedGuaData.guaaddaddinfo = '',
-                this.SelectedGuaData.guaarea = ''
+            // this.SelectedGuaData.workguafname = '',
+            //     this.SelectedGuaData.workguamname = '',
+            //     this.SelectedGuaData.workgualname = '',
+            //     this.SelectedGuaData.guareladship = '',
+            //     this.SelectedGuaData.guaworkduraton = '',
+            //     this.SelectedGuaData.guagender = '',
+            //     this.SelectedGuaData.guacity = '',
+            //     this.SelectedGuaData.guastate = '',
+            //     this.SelectedGuaData.guatelno = '',
+            //     this.SelectedGuaData.guanearestBstop = '',
+            //     this.SelectedGuaData.guastreetname = '',
+            //     this.SelectedGuaData.guahouseno = '',
+            //     this.SelectedGuaData.guaaddaddinfo = '',
+            //     this.SelectedGuaData.guaarea = ''
         },
 
-resetGuaform:function(){
-    app.showGuaForm = false;
-    app.resetadd(); 
-    app.resetgua();
-    app.resetpgua();
-    app.Personal_Guarantor = false,
-    app.Work_Guarantor = false,
-    app.AddressUpdate = false
-},
+        resetGuaform: function () {
+            app.showGuaForm = false;
+            // app.resetadd();
+            // app.resetgua();
+            // app.resetpgua();
+            app.Personal_Guarantor = false,
+                app.Work_Guarantor = false,
+                app.AddressUpdate = false
+        },
         resetadd: function (event) {
-                this.SelectedGuaData.updcity = '',
-                this.SelectedGuaData.updstate = '',
-                this.SelectedGuaData.updtelno = '',
-                this.SelectedGuaData.updnearestBstop = '',
-                this.SelectedGuaData.updstreetname = '',
-                this.SelectedGuaData.updhouseno = '',
-                this.SelectedGuaData.updaddaddinfo = '',
-                this.SelectedGuaData.updaddarea = ''
+            // this.SelectedGuaData.updcity = '',
+            //     this.SelectedGuaData.updstate = '',
+            //     this.SelectedGuaData.updtelno = '',
+            //     this.SelectedGuaData.updnearestBstop = '',
+            //     this.SelectedGuaData.updstreetname = '',
+            //     this.SelectedGuaData.updhouseno = '',
+            //     this.SelectedGuaData.updaddaddinfo = '',
+            //     this.SelectedGuaData.updaddarea = ''
         },
 
         resetpgua: function (event) {
 
-            this.SelectedGuaData.pguafname = '',
-                this.SelectedGuaData.pguamname = '',
-                this.SelectedGuaData.pgualname = '',
-                this.SelectedGuaData.pguareladship = '',
-                this.SelectedGuaData.pguaworkduraton = '',
-                this.SelectedGuaData.pguagender = '',
-                this.SelectedGuaData.pguacity = '',
-                this.SelectedGuaData.pguastate = '',
-                this.SelectedGuaData.pguatelno = '',
-                this.SelectedGuaData.pguanearestBstop = '',
-                this.SelectedGuaData.pguastreetname = '',
-                this.SelectedGuaData.pguahouseno = '',
-                this.SelectedGuaData.pguaaddaddinfo = '',
-                this.SelectedGuaData.pguaarea = ''
+            // this.SelectedGuaData.pguafname = '',
+            //     this.SelectedGuaData.pguamname = '',
+            //     this.SelectedGuaData.pgualname = '',
+            //     this.SelectedGuaData.pguareladship = '',
+            //     this.SelectedGuaData.pguaworkduraton = '',
+            //     this.SelectedGuaData.pguagender = '',
+            //     this.SelectedGuaData.pguacity = '',
+            //     this.SelectedGuaData.pguastate = '',
+            //     this.SelectedGuaData.pguatelno = '',
+            //     this.SelectedGuaData.pguanearestBstop = '',
+            //     this.SelectedGuaData.pguastreetname = '',
+            //     this.SelectedGuaData.pguahouseno = '',
+            //     this.SelectedGuaData.pguaaddaddinfo = '',
+            //     this.SelectedGuaData.pguaarea = ''
         },
 
 
@@ -1676,7 +1725,7 @@ resetGuaform:function(){
                 Empname: '',
                 Empnumber: '',
                 Regdate: '',
-                Branch:'',
+                Branch: '',
                 addarea: '',
                 norooms: '',
                 empstatus: '',
@@ -1695,15 +1744,15 @@ resetGuaform:function(){
         sendNotification(name, telnumber, branch) {
             telnumber = telnumber.substr(1);
             var address;
-            var contactno ;
-           if (branch == 'Challenge'){ address = 'No. 60, Elewura Bus-Stop, Laramax Plaza(1st floor), Challenge, Ibadan, Opposite *Smile*'; contactno = '08150479429';}
-          if (branch == 'Dugbe'){ address = 'Shop 119 Ayorinde Akintola, Adamasingba Complex, Adamasingba, Ibadan '; contactno = '08051932680';}
-            if (branch == 'Agodi-Gate'){ address = 'Shop B42/B43 NTA Shopping Plaza, Agodi gate, Ibadan '; contactno = '08115103079';}
-          if (branch == 'Iwo-Road'){ address = 'Suite 5,6,7,8, Praize Plaza, beside Toun Specialist hospital, New Ife Road, Ibadan'; contactno = '08115101751';}
-          if (branch == 'Bodija'){ address = 'Suite B3, Albarka Shopping Complex, Bodija'; contactno = '08115103525';}
-          console.log(branch);
-          console.log(address);
-            let message = "Dear " + name + ", Welcome to Altara Credit Limited, You are hereby invited to our showroom at " +  address  + " to learn more about our offerings. Pick up products now and pay later. We look forward to seeing you. For more info contact : " + contactno ;
+            var contactno;
+            if (branch == 'Challenge') { address = 'No. 60, Elewura Bus-Stop, Laramax Plaza(1st floor), Challenge, Ibadan, Opposite *Smile*'; contactno = '08150479429'; }
+            if (branch == 'Dugbe') { address = 'Shop 119 Ayorinde Akintola, Adamasingba Complex, Adamasingba, Ibadan '; contactno = '08051932680'; }
+            if (branch == 'Agodi-Gate') { address = 'Shop B42/B43 NTA Shopping Plaza, Agodi gate, Ibadan '; contactno = '08115103079'; }
+            if (branch == 'Iwo-Road') { address = 'Suite 5,6,7,8, Praize Plaza, beside Toun Specialist hospital, New Ife Road, Ibadan'; contactno = '08115101751'; }
+            if (branch == 'Bodija') { address = 'Suite B3, Albarka Shopping Complex, Bodija'; contactno = '08115103525'; }
+            console.log(branch);
+            console.log(address);
+            let message = "Dear " + name + ", Welcome to Altara Credit Limited, You are hereby invited to our showroom at " + address + " to learn more about our offerings. Pick up products now and pay later. We look forward to seeing you. For more info contact : " + contactno;
             axios.get("https://api.infobip.com/sms/1/text/query?username=Oluwatoke12&password=Altara99&to=" + 234 + telnumber + "&text=" + message + "")
                 .then(function (response2) {
                     console.log(response2);
