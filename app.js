@@ -202,7 +202,8 @@ var app = new Vue({
             "Dugbe",
             "Iwo-Road",
             "Bodija",
-            "Agodi-Gate"
+            "Agodi-Gate",
+            "Altara-Lifestyle Bodija"
         ],
 
         StateOptions: [
@@ -1750,6 +1751,7 @@ var app = new Vue({
             if (branch == 'Agodi-Gate') { address = 'Shop B42/B43 NTA Shopping Plaza, Agodi gate, Ibadan '; contactno = '08115103079'; }
             if (branch == 'Iwo-Road') { address = 'Suite 5,6,7,8, Praize Plaza, beside Toun Specialist hospital, New Ife Road, Ibadan'; contactno = '08115101751'; }
             if (branch == 'Bodija') { address = 'Suite B3, Albarka Shopping Complex, Bodija'; contactno = '08115103525'; }
+            if (branch == 'Altara-Lifestyle Bodija') { address = 'Suite AC06, Albarka Shopping Complex, Bodija'; contactno = '09058686748'; }
             console.log(branch);
             console.log(address);
             let message = "Dear " + name + ", Welcome to Altara Credit Limited, You are hereby invited to our showroom at " + address + " to learn more about our offerings. Pick up products now and pay later. We look forward to seeing you. For more info contact : " + contactno;
